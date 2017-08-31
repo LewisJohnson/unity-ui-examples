@@ -25,6 +25,7 @@ unity-ui-examples
 │   README.md    
 └───Assets
     └───ExampleProjectName
+        │   README.md
         └───Scenes
             │   ExampleProjectName.unity
         └───Scripts
