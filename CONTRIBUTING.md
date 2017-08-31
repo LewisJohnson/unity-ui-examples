@@ -19,10 +19,27 @@ We welcome everyone to improve the quality and add content to this repository.
 
  ## Adding a new example
  * Fork the repository.
- * Add the examples code and scene.
+ * Add the examples code and scene, make sure you follow the same structure as existing examples.
+ ```
+unity-ui-examples
+│   README.md    
+└───Assets
+    └───ExampleProjectName
+        └───Scenes
+            │   ExampleProjectName.unity
+        └───Scripts
+            │   ExampleScript.cs
+            │   ExampleScript2.cs
+        └───Images
+            │   Background.png
+        └───Etc
+            │   etc.x
+```
+
  * Add a README.md which is like existing examples (try to include a gif).
  * Submit a new pull request.
  * Wait for it to be approved.
  
  ## Note 
  * Feel free to add to the .gitignore if you're using a diffrent IDE/OS.
+ * We only accept C# examples at this time.
