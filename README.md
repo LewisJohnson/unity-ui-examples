@@ -19,6 +19,7 @@ If you just want to use the examples, that's fine! All you have to do is;
 **OR**
 
 HTTPS: ``` git clone https://github.com/LewisJohnson/unity-ui-examples.git ```
+
 SSH: ``` git@github.com:LewisJohnson/unity-ui-examples.git ```
 
 ## Contributing 
@@ -28,4 +29,4 @@ Everyone is welcome to contribute, please read the [CONTRIBUTING.md
 
 ## License
 
-[https://github.com/LewisJohnson/unity-ui-examples/blob/master/LICENSE](MIT)
+[MIT](https://github.com/LewisJohnson/unity-ui-examples/blob/master/LICENSE)
