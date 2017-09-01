@@ -61,3 +61,4 @@ unity-ui-examples
 ## Note 
  * Feel free to add to the .gitignore if you're using a diffrent IDE/OS.
  * We only accept C# examples at this time.
+ * There should be no spaces in any directory name.
