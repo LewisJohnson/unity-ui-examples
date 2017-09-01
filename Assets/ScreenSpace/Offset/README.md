@@ -5,11 +5,18 @@
 This UI example is inspired by games such as No Man's Sky and Destiny, where the UI offsets to the Joystick/Mouse movement. The black bars included are optional as the container is offset, not the children individually.
 
 ### Supported aspect ratios
-* 5:4
-* 4:3
-* 3:2
-* 16:10
-* 16:9
+* 5:4 ✅
+* 4:3 ✅
+* 3:2 ✅
+* 16:10 ✅
+* 16:9 ✅
+
+### Supported Platforms
+* Editor ✅
+* Standalone ✅
+* UWP ✅
+* **Mobile** ❌
+* **Console** ✅
 
 ### Parameters
 * Offest UI
