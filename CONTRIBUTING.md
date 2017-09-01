@@ -6,11 +6,11 @@ We welcome everyone to improve the quality and add content to this repository.
 * Make sure you have a [Unity 2017.1](https://unity3d.com/get-unity/download)
 * Make sure you have a [GitHub account](https://github.com/signup/free)
 
-## Reporting a bug (i.e. Fixing a bug)
+## Reporting a bug
 * Submit an issue, assuming one does not already exist.
 * Clearly describe the issue including steps to reproduce.
 
-## Improving an example (i.e. Fixing a bug)
+## Improving an example (i.e. Fixing a bug, cleaning code)
 * Follow the "Reporting a bug" steps.
 * Fork the repository.
 * Fix the code/scene.
