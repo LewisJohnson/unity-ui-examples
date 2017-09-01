@@ -1,8 +1,8 @@
 # Percentage Based UI
+![Percentage Based UI Preview Image](https://raw.githubusercontent.com/LewisJohnson/unity-ui-examples/master/Assets/ScreenSpace/PercentageBased/readme-image.png)
 
 ### Description
 This UI example is inspired by css, letting the developer create components with left/top and width/height values.
-
 Scales well with any screen imaginable.
 
 ### Supported aspect ratios
@@ -16,14 +16,22 @@ Scales well with any screen imaginable.
 * Editor ✅
 * Standalone ✅
 * UWP ✅
-* **Mobile** ❌
-* **Console** ✅
+
+**Mobile** ❓
+* iOS ❓
+* Android ❓
+
+**Console**
+* Xbox One ✅
+* PS4 ✅
 
 ### Parameters
-* Offest UI
-  * X Clamp Max - The clamp on the offset of the container's local x position.
-  * Y Clamp Max - The clamp on the offset of the container's local y position.
-  * Blackbar Percentage - The percentage of black bar covering the screen. 25% would be 50% of the screen covered, because there is a top and bottom bar.
-  * Sensitivity - How sensitive the offset is to player input.
-  * Invert Offset - If the offset is oposite to the player's input or not.
-  * Controller Offset - You can disable offset for controllers.
+* Scaled Component
+	* Container - The container rect transform the component percentages are based off.
+	* **Component Position**
+		* Left - Left percentage from containers left side.
+		* Top - Top percentage from containers top side.
+	* **Component Scale**
+		* Width - Width percentage of containers width.
+		* Height - height percentage of containers height.
+	
