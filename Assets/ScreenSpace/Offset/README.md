@@ -1,6 +1,8 @@
 # Offest UI
 ![Example demo gif](https://github.com/LewisJohnson/unity-ui-examples/blob/master/Assets/Offset/readme-gif.gif)
-This UI is inspired by games such as No Man's Sky and Destiny, where the UI offsets to the Joystick/Mouse movement.
+
+### Description
+This UI example is inspired by games such as No Man's Sky and Destiny, where the UI offsets to the Joystick/Mouse movement. The black bars included are optional as the container is offset, not the children individually.
 
 ### Supported aspect ratios
 * 5:4
