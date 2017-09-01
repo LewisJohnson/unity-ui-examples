@@ -2,9 +2,12 @@
 
 We welcome everyone to improve the quality and add content to this repository.
 
+This project adheres to the Contributor Covenant [code of conduct](https://github.com/LewisJohnson/unity-ui-examples/blob/master/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to lewisjohnsondev@gmail.com.
+
+The following is a set of guidelines for contributing to Unity User Interface Examples. These are just guidelines, not rules, use your best judgment and feel free to propose changes to this document in a pull request.
+
 ## Getting Started
-* Make sure you have a [Unity 2017.1](https://unity3d.com/get-unity/download)
-* Make sure you have a [GitHub account](https://github.com/signup/free)
+Before you can contribute, you'll need a [GitHub account](https://github.com/signup/free). If you're a developer you'll need [Unity 2017.1](https://unity3d.com/get-unity/download). Most projects come with a [Visual Studio](https://www.visualstudio.com/) project solution, if you're on Windows, we recommended you use it.
 
 ## Reporting a bug
 * Submit an issue, assuming one does not already exist.
@@ -54,7 +57,7 @@ unity-ui-examples
  * Add a README.md which is like existing examples (try to include a gif).
  * Submit a new pull request.
  * Wait for it to be approved.
- 
- ## Note 
+
+## Note 
  * Feel free to add to the .gitignore if you're using a diffrent IDE/OS.
  * We only accept C# examples at this time.
