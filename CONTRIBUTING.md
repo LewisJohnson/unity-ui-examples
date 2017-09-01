@@ -54,7 +54,7 @@ unity-ui-examples
 				│   etc.x
 ```
 
- * Add a README.md which is like existing examples (try to include a gif).
+ * Add a README.md which follows the [documention guideline](https://github.com/LewisJohnson/unity-ui-examples/blob/master/DOCUMENTATION.md).
  * Submit a new pull request.
  * Wait for it to be approved.
 
