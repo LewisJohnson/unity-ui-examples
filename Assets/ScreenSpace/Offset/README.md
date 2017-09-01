@@ -16,7 +16,10 @@ This UI example is inspired by games such as No Man's Sky and Destiny, where the
 * Standalone ✅
 * UWP ✅
 * **Mobile** ❌
-* **Console** ✅
+
+**Console**
+* Xbox One ✅
+* PS4 ✅
 
 ### Parameters
 * Offest UI
