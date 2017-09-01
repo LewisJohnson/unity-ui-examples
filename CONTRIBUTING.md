@@ -24,17 +24,31 @@ We welcome everyone to improve the quality and add content to this repository.
 unity-ui-examples
 │   README.md    
 └───Assets
-    └───ExampleProjectName
-        │   README.md
-        └───Scenes
-            │   ExampleProjectName.unity
-        └───Scripts
-            │   ExampleScript.cs
-            │   ExampleScript2.cs
-        └───Images
-            │   Background.png
-        └───Etc
-            │   etc.x
+    └───Common
+	└───ScreenSpace
+	│	└───ExampleProjectName
+	│		│   README.md
+	│		└───Scenes
+	│			│   ExampleProjectName.unity
+	│		└───Scripts
+	│			│   ExampleScript.cs
+	│			│   ExampleScript2.cs
+	│		└───Images
+	│			│   Background.png
+	│		└───Etc
+	│			│   etc.x
+	└───WorldSpace
+		└───ExampleProjectName
+			│   README.md
+			└───Scenes
+				│   ExampleProjectName.unity
+			└───Scripts
+				│   ExampleScript.cs
+				│   ExampleScript2.cs
+			└───Images
+				│   Background.png
+			└───Etc
+				│   etc.x
 ```
 
  * Add a README.md which is like existing examples (try to include a gif).
