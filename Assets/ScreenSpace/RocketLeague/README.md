@@ -9,7 +9,7 @@ Included:
 * Sub menus
 * Text ticker
 
-ToDo:
+#### Todo:
 * Profile UI
 * Menu button description
 * Social media icons
