@@ -79,3 +79,9 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# JetBrains IDEs
+
+.idea/
+*.iws
+.idea_modules/
