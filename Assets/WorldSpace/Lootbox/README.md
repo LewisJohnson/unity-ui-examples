@@ -4,6 +4,12 @@
 ### Description
 A UI which shows the content of the lootbox when triggered (Proximity). Great for RPG or exploration games.
 
+#### Included:
+* Animations
+* Trigger scripts
+* World space list
+* Rough inventory system
+
 #### Todo:
 * Scoll list
 
