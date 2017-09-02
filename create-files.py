@@ -28,7 +28,6 @@ def get_project_name():
         get_project_name()
     else:
         # We have to follow guidelines :)
-        example_name = example_name.title()
         example_name = example_name.replace(' ', '')
         return example_name
 
