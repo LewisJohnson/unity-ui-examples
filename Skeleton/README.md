@@ -2,6 +2,15 @@
 ![Example](LINK TO IMAGE)
 
 ### Description
+Hello, I am a description which should be replaced so. Please replace me.
+
+#### Included: 
+* Some stuff
+* Other stuff
+* Things
+
+#### Todo:
+* Everything
 
 ### Supported aspect ratios
 * 5:4 ❓
