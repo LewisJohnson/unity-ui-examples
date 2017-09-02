@@ -9,7 +9,7 @@ A collection of UI examples for Unity 2017.
 - [PercentageBased](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/ScreenSpace/PercentageBased)
 - [Rocket League](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/ScreenSpace/RocketLeague)
 ### World Space
-- [LootBox](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/WorldSpace/Lootbox-Incomplete)
+- [LootBox](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/WorldSpace/Lootbox)
 - [Character Body](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/WorldSpace/CharacterBody)
 
 ## Using an example in your own project
