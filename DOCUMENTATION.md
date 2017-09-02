@@ -13,12 +13,12 @@ These are the guidelines for writing documentation for an example.
 
 ## Document flow
 
-You can use this as a template:
+### Completed examples
+For completed examples you should use this as a template:
 
 ```markdown
 # Examples Project Name
-
-**GIF OR IMAGE**
+![Example demo image](LINK TO IMAGE)
 
 ### Description
 ...
@@ -45,6 +45,25 @@ Android ✅
 
 ### Parameters
 ...
+
+```
+### In-Progress examples
+Examples which have yet to be finished are permitted to omit paramaters, but the demo image, supported aspect ratios and supported platforms must still be in the README. Use this as a template.
+
+```markdown
+# Examples Project Name
+![Example demo image](LINK TO IMAGE)
+
+### Description
+...
+
+### Supported aspect ratios
+...
+
+### Supported Platforms
+...
+
+### Parameters
 
 ```
 
