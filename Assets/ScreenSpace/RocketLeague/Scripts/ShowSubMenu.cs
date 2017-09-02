@@ -5,44 +5,50 @@ using UnityEngine.UI;
 public class ShowSubMenu : MonoBehaviour {
 
     [SerializeField]
-    private Transform _submenuGameObject;
+    private Transform _submenuGameTransform;
 
-    private bool menuOpen;
+    [SerializeField]
+    private Transform _backButtonTransform;
+
+    private bool _menuOpen;
 
     // Use this for initialization
     void Start() {
-        if (transform.Find("Submenu")) {
-            _submenuGameObject = transform.Find("Submenu");
-
-        } else {
-            gameObject.GetComponent<ShowSubMenu>().enabled = false;
+        if (_submenuGameTransform == null) {
+            Debug.LogWarning("Submenu has not been assigned.");
         }
     }
 
     public void OnMouseEnter() {
-        if (!gameObject.GetComponent<ShowSubMenu>().enabled)
+        if (!gameObject.GetComponent<ShowSubMenu>().enabled || _submenuGameTransform == null)
             return;
-        _submenuGameObject.gameObject.SetActive(true);
+        _submenuGameTransform.gameObject.SetActive(true);
     }
 
     public void OnMouseExit() {
-        if (!gameObject.GetComponent<ShowSubMenu>().enabled || menuOpen)
+        if (!gameObject.GetComponent<ShowSubMenu>().enabled || _menuOpen || _submenuGameTransform == null)
             return;
-        _submenuGameObject.gameObject.SetActive(false);
+        _submenuGameTransform.gameObject.SetActive(false);
     }
 
     public void ToggleChange() {
-        if (this.GetComponent<Toggle>().isOn)
-        {
-            menuOpen = true;
-            _submenuGameObject.GetComponent<CanvasGroup>().alpha = 1f;
+        if (GetComponent<Toggle>().isOn) {
+            _menuOpen = true;
+
+            _backButtonTransform.gameObject.SetActive(true);
+            _backButtonTransform.GetComponent<BackButton>().SubMenuGameObject = _submenuGameTransform.gameObject;
+
+            transform.parent.GetComponent<Animation>().Play();
+            _submenuGameTransform.GetComponent<Animation>().Play();
+        } else {
+            _menuOpen = false;
+
+            _backButtonTransform.gameObject.SetActive(false);
+            _backButtonTransform.GetComponent<BackButton>().SubMenuGameObject = null;
+
+            _submenuGameTransform.gameObject.SetActive(false);
+            _submenuGameTransform.GetComponent<CanvasGroup>().alpha = 0.3f;
         }
-        else
-        {
-            menuOpen = false;
-            _submenuGameObject.gameObject.SetActive(false);
-            _submenuGameObject.GetComponent<CanvasGroup>().alpha = 0.3f;
-        }
-        
+
     }
 }
