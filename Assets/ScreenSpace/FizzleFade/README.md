@@ -1,5 +1,5 @@
-# Example
-![Example](LINK TO IMAGE)
+# FizzleFade
+![FizzleFade demo image](LINK TO IMAGE)
 
 ### Description
 Hello, I am a description which should be replaced so. Please replace me.

@@ -1,5 +1,5 @@
 # Rocket League [Incomplete]
-![Example demo image](https://github.com/LewisJohnson/unity-ui-examples/blob/master/Assets/ScreenSpace/RocketLeague/readme-image.JPG)
+![Rocket League demo image](https://github.com/LewisJohnson/unity-ui-examples/blob/master/Assets/ScreenSpace/RocketLeague/readme-image.JPG)
 ### Description
 No that is not Rocket League, it's this samples! This example is a clone of the [Rocket League](https://en.wikipedia.org/wiki/Rocket_League) main menu UI. 
 
