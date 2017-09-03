@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Screen_Space.PercentageBased.Scripts {
+namespace Assets.ScreenSpace.PercentageBased.Scripts {
 
     [RequireComponent(typeof(RectTransform))]
     [ExecuteInEditMode]

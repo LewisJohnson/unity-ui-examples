@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
-#if UNITY_EDITOR
 using UnityEditor;
-#endif
+using UnityEngine;
 
-namespace UnityStandardAssets.Utility
+namespace Assets.Common.StandardAssets.Utility
 {
+
     public class AutoMobileShaderSwitch : MonoBehaviour
     {
         [SerializeField] private ReplacementList m_ReplacementList;
@@ -79,10 +78,7 @@ namespace UnityStandardAssets.Utility
             public ReplacementDefinition[] items = new ReplacementDefinition[0];
         }
     }
-}
 
-namespace UnityStandardAssets.Utility.Inspector
-{
 #if UNITY_EDITOR
     [CustomPropertyDrawer(typeof (AutoMobileShaderSwitch.ReplacementList))]
     public class ReplacementListDrawer : PropertyDrawer
@@ -174,7 +170,7 @@ namespace UnityStandardAssets.Utility.Inspector
 
             // add button
             var addButtonRect = new Rect((x + position.width) - widths[widths.Length - 1]*inspectorWidth, y,
-                                         widths[widths.Length - 1]*inspectorWidth, lineHeight);
+                widths[widths.Length - 1]*inspectorWidth, lineHeight);
             if (GUI.Button(addButtonRect, "+"))
             {
                 items.InsertArrayElementAtIndex(items.arraySize);

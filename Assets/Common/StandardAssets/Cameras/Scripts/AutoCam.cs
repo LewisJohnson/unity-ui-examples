@@ -1,10 +1,10 @@
-using System;
 using UnityEngine;
+
 #if UNITY_EDITOR
 
 #endif
 
-namespace UnityStandardAssets.Cameras
+namespace Assets.Common.StandardAssets.Cameras.Scripts
 {
     [ExecuteInEditMode]
     public class AutoCam : PivotBasedCameraRig

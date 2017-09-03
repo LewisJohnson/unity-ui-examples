@@ -1,8 +1,7 @@
-using System;
+using Assets.Common.StandardAssets.Utility;
 using UnityEngine;
-using UnityStandardAssets.Utility;
 
-namespace UnityStandardAssets.Characters.FirstPerson
+namespace Assets.Common.StandardAssets.Characters.FirstPersonCharacter.Scripts
 {
     public class HeadBob : MonoBehaviour
     {

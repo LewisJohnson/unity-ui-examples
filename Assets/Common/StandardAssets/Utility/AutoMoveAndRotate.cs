@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace UnityStandardAssets.Utility
+namespace Assets.Common.StandardAssets.Utility
 {
     public class AutoMoveAndRotate : MonoBehaviour
     {

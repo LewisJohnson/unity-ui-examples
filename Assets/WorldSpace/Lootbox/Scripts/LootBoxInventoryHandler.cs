@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.World_Space.Lootbox.Scripts
+namespace Assets.WorldSpace.Lootbox.Scripts
 {
     public class LootBoxInventoryHandler : MonoBehaviour {
 

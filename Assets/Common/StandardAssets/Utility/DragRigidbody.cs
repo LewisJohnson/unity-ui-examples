@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
-namespace UnityStandardAssets.Utility
+namespace Assets.Common.StandardAssets.Utility
 {
     public class DragRigidbody : MonoBehaviour
     {

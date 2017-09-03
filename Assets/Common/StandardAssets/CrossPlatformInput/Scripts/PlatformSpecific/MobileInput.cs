@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
+namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts.PlatformSpecific
 {
     public class MobileInput : VirtualInput
     {

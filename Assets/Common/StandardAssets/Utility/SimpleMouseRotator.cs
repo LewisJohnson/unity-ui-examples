@@ -1,8 +1,7 @@
-using System;
+using Assets.Common.StandardAssets.CrossPlatformInput.Scripts;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 
-namespace UnityStandardAssets.Utility
+namespace Assets.Common.StandardAssets.Utility
 {
     public class SimpleMouseRotator : MonoBehaviour
     {

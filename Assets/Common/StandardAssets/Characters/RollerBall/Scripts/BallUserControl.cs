@@ -1,8 +1,7 @@
-using System;
+using Assets.Common.StandardAssets.CrossPlatformInput.Scripts;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 
-namespace UnityStandardAssets.Vehicles.Ball
+namespace Assets.Common.StandardAssets.Characters.RollerBall.Scripts
 {
     public class BallUserControl : MonoBehaviour
     {

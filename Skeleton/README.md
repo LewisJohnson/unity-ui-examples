@@ -1,5 +1,5 @@
 # Example
-![Example demo image](LINK TO IMAGE)
+![Example name demo image](LINK TO IMAGE)
 
 ### Description
 Hello, I am a description which should be replaced so. Please replace me.

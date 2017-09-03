@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.World_Space.Lootbox.Scripts {
+namespace Assets.WorldSpace.Lootbox.Scripts {
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(LootBoxInventoryHandler))]
 

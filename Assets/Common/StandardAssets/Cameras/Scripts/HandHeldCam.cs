@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace UnityStandardAssets.Cameras
+namespace Assets.Common.StandardAssets.Cameras.Scripts
 {
     public class HandHeldCam : LookatTarget
     {

@@ -1,10 +1,9 @@
-using System;
+using Assets.Common.StandardAssets.CrossPlatformInput.Scripts;
+using Assets.Common.StandardAssets.Utility;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
-using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
 
-namespace UnityStandardAssets.Characters.FirstPerson
+namespace Assets.Common.StandardAssets.Characters.FirstPersonCharacter.Scripts
 {
     [RequireComponent(typeof (CharacterController))]
     [RequireComponent(typeof (AudioSource))]

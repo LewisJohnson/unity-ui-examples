@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
-using UnityEngine;
-#if UNITY_EDITOR
 using UnityEditor;
+using UnityEngine;
 
-#endif
-
-namespace UnityStandardAssets.Utility
+namespace Assets.Common.StandardAssets.Utility
 {
+
     public class WaypointCircuit : MonoBehaviour
     {
         public WaypointList waypointList = new WaypointList();
@@ -217,12 +215,9 @@ namespace UnityStandardAssets.Utility
             }
         }
     }
-}
 
-namespace UnityStandardAssets.Utility.Inspector
-{
 #if UNITY_EDITOR
-    [CustomPropertyDrawer(typeof (WaypointCircuit.WaypointList))]
+    [CustomPropertyDrawer(typeof(WaypointCircuit.WaypointList))]
     public class WaypointListDrawer : PropertyDrawer
     {
         private float lineHeight = 18;
@@ -273,13 +268,13 @@ namespace UnityStandardAssets.Utility.Inspector
                         {
                             if (n == 0)
                             {
-                                EditorGUI.ObjectField(rect, item.objectReferenceValue, typeof (Transform), true);
+                                EditorGUI.ObjectField(rect, item.objectReferenceValue, typeof(Transform), true);
                             }
                             else
                             {
                                 if (GUI.Button(rect, props[n]))
                                 {
-                                    switch (props[n])
+                                    switch(props[n])
                                     {
                                         case "-":
                                             items.DeleteArrayElementAtIndex(i);
@@ -315,7 +310,7 @@ namespace UnityStandardAssets.Utility.Inspector
             {
                 // add button
                 var addButtonRect = new Rect((x + position.width) - widths[widths.Length - 1]*inspectorWidth, y,
-                                             widths[widths.Length - 1]*inspectorWidth, lineHeight);
+                    widths[widths.Length - 1]*inspectorWidth, lineHeight);
                 if (GUI.Button(addButtonRect, "+"))
                 {
                     items.InsertArrayElementAtIndex(items.arraySize);
