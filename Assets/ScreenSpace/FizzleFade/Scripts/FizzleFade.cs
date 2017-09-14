@@ -57,8 +57,8 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
 
             for (int x = 0; x <= width; x++) {
                 for (int y = 0; y <= height; y++) {
-                    //StartCoroutine(WaitAndPrint(x, y, pixelColour, 1));
-                    //FizzleTexture2D.SetPixel(x, y, pixelColour);
+                    StartCoroutine(WaitAndPrint(x, y, pixelColour, 1));
+                    FizzleTexture2D.SetPixel(x, y, pixelColour);
                 }
             }
 
