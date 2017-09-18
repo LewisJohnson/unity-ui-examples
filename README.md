@@ -5,8 +5,10 @@ A collection of UI examples for Unity 2017.
 
 ## List of Examples
 ### Screen Space
+- [FizzleFade](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/ScreenSpace/FizzleFade)
 - [Offest](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/ScreenSpace/Offset)
-- [PercentageBased](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/ScreenSpace/PercentageBased)
+- [Prision Architect](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/ScreenSpace/PrisionArchitect)
+- [Percentage Based (Like CSS for Unity)](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/ScreenSpace/PercentageBased)
 - [Rocket League](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/ScreenSpace/RocketLeague)
 ### World Space
 - [LootBox](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/WorldSpace/Lootbox)
