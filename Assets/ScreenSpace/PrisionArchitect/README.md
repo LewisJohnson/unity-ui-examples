@@ -5,14 +5,12 @@
 A building/managment user interface á la [Prision Architect](https://www.introversion.co.uk/prisonarchitect/).
 
 #### Included: 
-* Basic Panels
+* All panels found in game
+* Descriptions shown on hover
+* Action panels shown on click
 
 #### Todo:
-* Scripts
 * Working clock
-* Todo panel scaling
-* Pick object panel
-* Search object panel
 
 ### Supported aspect ratios
 * 5:4 ❓
