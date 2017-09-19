@@ -30,8 +30,6 @@ SSH: ``` git@github.com:LewisJohnson/unity-ui-examples.git ```
 Everyone is welcome to contribute, please read the [CONTRIBUTING.md
 ](https://github.com/LewisJohnson/unity-ui-examples/blob/master/CONTRIBUTING.md) before doing so.
 
-#### create-files.py
-I created a little script to help kickstart new examples. Just run the script and follow the prompts then you're good to go!
-
 ## License
-[MIT](https://github.com/LewisJohnson/unity-ui-examples/blob/master/LICENSE)
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/LewisJohnson/unity-ui-examples/blob/master/LICENSE) file for details
+
