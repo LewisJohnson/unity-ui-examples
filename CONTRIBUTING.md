@@ -44,6 +44,11 @@ Follow quick start ***or*** manual way.
 ### Quick Start
 There is a little python script called ```create-files.py``` in the root folder to help kickstart new examples. Just run the script and follow the prompts then you're good to go!
 
+* Fork the repository.
+* Run ```create-files.py```.
+* Submit a new pull request.
+* Wait for it to be approved.
+
 ### Manual
  * Fork the repository.
  * Add the examples code and scene, make sure you follow the same structure as existing examples.
