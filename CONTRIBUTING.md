@@ -8,7 +8,7 @@ The following is a set of guidelines for contributing to Unity User Interface Ex
 
 ## Table of contents
 - [Getting Started](#getting-started)
-- [Quick Notes](#quick-notes)
+	- [Quick Notes](#quick-notes)
 - [Reporting a Bug](#reporting-a-bug)
 - [Improving an Example](#improving-an-example)
 - [Adding a New Example](#adding-a-new-example)
@@ -22,13 +22,14 @@ Before you can contribute, you'll need a [GitHub account](https://github.com/sig
 * Feel free to add to the .gitignore file.
 * We only accept examples written in C#.
 * There should be no spaces in any directory name.
+* We don't take requests for new examples.
 
 ## Reporting a Bug
 * Submit an issue, assuming one does not already exist.
 * Clearly describe the issue including steps to reproduce.
 
 ## Improving an Example
-Sometimes an example will have unclean code, a bug, or missing documentation. We welcome you to fix any example you see improvments in.
+Sometimes an example will have unclean code, a bug, or missing documentation. We welcome you to fix any example you see needs improving.
 * Follow the "Reporting a bug" steps.
 * Assign yourself to the issue.
 * Fork the repository.
