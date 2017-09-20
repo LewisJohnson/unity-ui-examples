@@ -26,66 +26,99 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = System.Random;
+using Assets.Common.Scripts;
 
 namespace Assets.ScreenSpace.FizzleFade.Scripts {
-
     public class FizzleFade : MonoBehaviour {
 
         public Texture2D FizzleTexture2D;
-        private bool _isFilled;
+        public Color PixelColour;
+        private bool isFilled;
+        private int containerWidth;
+        private int containerHeight;
+        private IEnumerable<IList<int>> xChunks;
+        private IEnumerable<IList<int>> yChunks;
 
         public void Start() {
-            Fizzle(new Color(255, 0, 0, 255));
-        }
+            // Get container info
+            containerWidth = ExtentionMethods.RoundToTenth((int)Math.Ceiling(GetComponent<RectTransform>().sizeDelta.x));
+            containerHeight = ExtentionMethods.RoundToTenth((int)Math.Ceiling(GetComponent<RectTransform>().sizeDelta.y));
+            FizzleTexture2D = new Texture2D(containerWidth, containerHeight, TextureFormat.ARGB32, false);
 
-        public void Fizzle(Color pixelColour) {
+            // Set texture to container
+            GetComponent<Image>().material.mainTexture = FizzleTexture2D;
 
-            int width = (int)Math.Ceiling(GetComponent<RectTransform>().sizeDelta.x);
-            int height = (int)Math.Ceiling(GetComponent<RectTransform>().sizeDelta.y);
-            FizzleTexture2D = new Texture2D(height, width, TextureFormat.ARGB32, false);
-
+            // Fill texture with transparent pixels
             var fillColorArray = FizzleTexture2D.GetPixels();
-
             for (var i = 0; i < fillColorArray.Length; ++i) {
                 fillColorArray[i] = new Color(0, 0, 0, 0);
             }
 
             FizzleTexture2D.SetPixels(fillColorArray);
             FizzleTexture2D.Apply();
-            GetComponent<Image>().material.mainTexture = FizzleTexture2D;
 
-            for (int x = 0; x <= width; x++) {
-                for (int y = 0; y <= height; y++) {
-                    StartCoroutine(WaitAndPrint(x, y, pixelColour, 1));
-                    FizzleTexture2D.SetPixel(x, y, pixelColour);
-                }
+            // Split container into 16x16 grid
+            int xChunkSize = containerWidth / 16;
+            int yChunkSize = containerHeight / 16;
+
+            var _xChunks = new List<int>();
+            var _yChunks = new List<int>();
+
+            for (int i = 0; i < containerWidth; i++) {
+                _xChunks.Add(i);
             }
 
-            
+            for (int i = 0; i < containerHeight; i++) {
+                _yChunks.Add(i);
+            }
+
+            xChunks = _xChunks.Chunks(xChunkSize);
+            yChunks = _yChunks.Chunks(xChunkSize);
+
+        }
+
+        private int x = 0;
+        private int y = 0;
+        private void SetNextPixel() {
+            if (x != containerWidth && y != containerHeight) {
+                for (int i = x; i <= x + 10; i++) {
+                    FizzleTexture2D.SetPixel(i, y, PixelColour);
+                }
+
+                x = x + 10;
+                y = y + 10;
+                FizzleTexture2D.Apply();
+            } else {
+                isFilled = true;
+            }
+        }
+
+        public void Fizzle(Color pixelColour) {
+            //GetComponent<Image>().material.mainTexture = FizzleTexture2D;
+
+            //for (int x = 0; x <= width; x++) {
+            //    for (int y = 0; y <= height; y++) {
+            //        StartCoroutine(WaitAndPrint(x, y, pixelColour, 1));
+            //        FizzleTexture2D.SetPixel(x, y, pixelColour);
+            //    }
+            //}
         }
 
 
         private IEnumerator WaitAndPrint(int x, int y, Color pixelColour, float waitTime) {
-            
             FizzleTexture2D.SetPixel(x, y, pixelColour);
-            
             yield return new WaitForSeconds(waitTime);
-
         }
 
-        public void FixedUpdate()
-        {
-            if (!_isFilled)
-            {
-                FizzleTexture2D.Apply();
+        public void Update() {
+            if (!isFilled) {
+                SetNextPixel();
             }
-            
         }
 
         public static void Shuffle<T>(IList<T> list) {
             int n = list.Count;
-            var rng = new Random();
+            var rng = new System.Random();
             while (n > 1) {
                 n--;
                 int k = rng.Next(n + 1);
