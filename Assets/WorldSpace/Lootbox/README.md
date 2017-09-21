@@ -1,5 +1,5 @@
 # Lootbox [Incomplete]
-![Lootbox demo image](/readme-image.JPG)
+![Lootbox demo image](./readme-image.JPG)
 
 ### Description
 A UI which shows the content of the lootbox when triggered (Proximity). Great for RPG or exploration games.
