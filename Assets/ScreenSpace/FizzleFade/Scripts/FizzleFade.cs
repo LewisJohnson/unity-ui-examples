@@ -32,12 +32,14 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
     public class FizzleFade : MonoBehaviour {
 
         public Texture2D FizzleTexture2D;
-        public Color PixelColour;
+        public Color PixelColour = new Color(255, 0, 0, 255);
         private bool isFilled;
         private int containerWidth;
         private int containerHeight;
         private IEnumerable<IList<int>> xChunks;
         private IEnumerable<IList<int>> yChunks;
+        private int xChunkSize;
+        private int xDivisions = 16;
 
         public void Start() {
             // Get container info
@@ -58,7 +60,7 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
             FizzleTexture2D.Apply();
 
             // Split container into 16x16 grid
-            int xChunkSize = containerWidth / 16;
+            xChunkSize = containerWidth / xDivisions;
             int yChunkSize = containerHeight / 16;
 
             var _xChunks = new List<int>();
@@ -73,46 +75,46 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
             }
 
             xChunks = _xChunks.Chunks(xChunkSize);
-            yChunks = _yChunks.Chunks(xChunkSize);
-
+            yChunks = _yChunks.Chunks(yChunkSize);
         }
 
-        private int x = 0;
-        private int y = 0;
-        private void SetNextPixel() {
-            if (x != containerWidth && y != containerHeight) {
-                for (int i = x; i <= x + 10; i++) {
-                    FizzleTexture2D.SetPixel(i, y, PixelColour);
-                }
+        private int outterLoop = 0;
 
-                x = x + 10;
-                y = y + 10;
-                FizzleTexture2D.Apply();
-            } else {
+        private void SetNextPixel() {
+            outterLoop++;
+            var xChunksIterator = xChunks.GetEnumerator();
+            var yChunksIterator = yChunks.GetEnumerator();
+
+            for (int i = 0; i < outterLoop; i++) {
+                xChunksIterator.MoveNext();
+                yChunksIterator.MoveNext();
+            }
+            var xItem = xChunksIterator.Current;
+            var yItem = yChunksIterator.Current;
+
+            for (int i = 0; i < xItem.Count; i++) {
+                FizzleTexture2D.SetPixel(xItem[i], yItem[i], PixelColour);
+
+            }
+
+
+            FizzleTexture2D.Apply();
+            if (outterLoop == xDivisions) {
                 isFilled = true;
             }
         }
 
-        public void Fizzle(Color pixelColour) {
-            //GetComponent<Image>().material.mainTexture = FizzleTexture2D;
+        private IEnumerator WaitAndPrint() {
+            print(Time.time);
+            SetNextPixel();
+            yield return new WaitForSeconds(4);
+            print(Time.time);
 
-            //for (int x = 0; x <= width; x++) {
-            //    for (int y = 0; y <= height; y++) {
-            //        StartCoroutine(WaitAndPrint(x, y, pixelColour, 1));
-            //        FizzleTexture2D.SetPixel(x, y, pixelColour);
-            //    }
-            //}
         }
 
-
-        private IEnumerator WaitAndPrint(int x, int y, Color pixelColour, float waitTime) {
-            FizzleTexture2D.SetPixel(x, y, pixelColour);
-            yield return new WaitForSeconds(waitTime);
-        }
-
-        public void Update() {
+        public void FixedUpdate() {
             if (!isFilled) {
-                SetNextPixel();
+                StartCoroutine(WaitAndPrint());
             }
         }
 
