@@ -38,8 +38,8 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
         private int containerHeight;
         private IEnumerable<IList<int>> xChunks;
         private IEnumerable<IList<int>> yChunks;
-        private int xChunkSize;
-        private int xDivisions = 16;
+        private IList<int>[,] combinedChunks;
+        private int amountOfDivisions = 16;
 
         public void Start() {
             // Get container info
@@ -60,7 +60,7 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
             FizzleTexture2D.Apply();
 
             // Split container into 16x16 grid
-            xChunkSize = containerWidth / xDivisions;
+            int xChunkSize = containerWidth / amountOfDivisions;
             int yChunkSize = containerHeight / 16;
 
             var _xChunks = new List<int>();
@@ -76,40 +76,41 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
 
             xChunks = _xChunks.Chunks(xChunkSize);
             yChunks = _yChunks.Chunks(yChunkSize);
+
+            combinedChunks = new IList<int>[amountOfDivisions, 2];
+            int j = 0;
+            int k = 0;
+            foreach (var item in xChunks) {
+                combinedChunks[j, 0] = item;
+                j++;
+            }
+            foreach (var item in yChunks) {
+                combinedChunks[k, 1] = item;
+                k++;
+            }
         }
 
-        private int outterLoop = 0;
-
+        private int chunkLoopIndex = 0;
         private void SetNextPixel() {
-            outterLoop++;
-            var xChunksIterator = xChunks.GetEnumerator();
-            var yChunksIterator = yChunks.GetEnumerator();
 
-            for (int i = 0; i < outterLoop; i++) {
-                xChunksIterator.MoveNext();
-                yChunksIterator.MoveNext();
+            int[,] pixels = new int[combinedChunks[chunkLoopIndex, 0].Count, combinedChunks[chunkLoopIndex, 1].Count];
+
+            for (int i = 0; i < combinedChunks[chunkLoopIndex, 0].Count; i++) {
+                for (int j = 0; j < combinedChunks[chunkLoopIndex, 1].Count; j++) {
+                    FizzleTexture2D.SetPixel(combinedChunks[chunkLoopIndex, 0][i], combinedChunks[chunkLoopIndex, 1][j], PixelColour);
+                }
             }
-            var xItem = xChunksIterator.Current;
-            var yItem = yChunksIterator.Current;
-
-            for (int i = 0; i < xItem.Count; i++) {
-                FizzleTexture2D.SetPixel(xItem[i], yItem[i], PixelColour);
-
-            }
-
 
             FizzleTexture2D.Apply();
-            if (outterLoop == xDivisions) {
+            if (chunkLoopIndex == amountOfDivisions) {
                 isFilled = true;
             }
+            chunkLoopIndex++;
         }
 
         private IEnumerator WaitAndPrint() {
-            print(Time.time);
             SetNextPixel();
             yield return new WaitForSeconds(4);
-            print(Time.time);
-
         }
 
         public void FixedUpdate() {
