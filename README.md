@@ -13,7 +13,7 @@ Each examples has a readme of it's own. So click an example below to find out mo
 - [Rocket League (Generic menu and text ticker)](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/ScreenSpace/RocketLeague)
 ### World Space
 - [LootBox (Useful for RPG's)](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/WorldSpace/Lootbox)
-- [Character Body (A UI attached to the body)](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/WorldSpace/CharacterBody)
+- [Holographic Wrist UI (A holographic UI on a character's wrist)](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/WorldSpace/HolographicWristUI)
 
 ## Using an example in your own project
 If you just want to use the examples, that's fine! All you have to do is;
