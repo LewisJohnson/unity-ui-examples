@@ -1,5 +1,5 @@
 # Lootbox [Incomplete]
-![Lootbox demo image](https://github.com/LewisJohnson/unity-ui-examples/blob/master/Assets/WorldSpace/Lootbox/readme-image.JPG)
+![Lootbox demo image](/readme-image.JPG)
 
 ### Description
 A UI which shows the content of the lootbox when triggered (Proximity). Great for RPG or exploration games.
