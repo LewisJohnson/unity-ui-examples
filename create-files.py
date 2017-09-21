@@ -50,7 +50,7 @@ if __name__ == "__main__":
              os.path.join(os.path.curdir, 'Assets', proj_type, proj_name, 'README.md'))
 
     # Copy image from skeleton
-    copyfile(os.path.join(os.path.curdir, 'Skeleton', 'readme-image.png'),
-             os.path.join(os.path.curdir, 'Assets', proj_type, proj_name, 'readme-image.png'))
+    copyfile(os.path.join(os.path.curdir, 'Skeleton', 'readme-image.jpg'),
+             os.path.join(os.path.curdir, 'Assets', proj_type, proj_name, 'readme-image.jpg'))
 
 

@@ -1,5 +1,5 @@
-# Example
-![Example name demo image](LINK TO IMAGE)
+﻿# Example
+![Example name demo image](./readme-image.jpg)
 
 ### Description
 Hello, I am a description which should be replaced so. Please replace me.
