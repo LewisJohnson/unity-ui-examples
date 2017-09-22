@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[AddComponentMenu("Scripts/Building/BuildPanelButtonHandler")]
 public class BuildPanelButtonHandler : MonoBehaviour {
 
     private Transform _childDescription;

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Utility
 {
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Simple Mouse Rotator")]
     public class SimpleMouseRotator : MonoBehaviour
     {
         // A mouselook behaviour with constraints which operate relative to

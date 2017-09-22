@@ -26,6 +26,7 @@ using UnityEngine;
 
 namespace Assets.WorldSpace.Lootbox.Scripts
 {
+    [AddComponentMenu("Scripts/Lootbox/LootBoxInventoryHandler")]
     public class LootBoxInventoryHandler : MonoBehaviour {
 
         public List<string> LootBoxInventory { get; private set; }

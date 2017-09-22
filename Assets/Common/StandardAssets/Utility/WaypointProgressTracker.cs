@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Utility
 {
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Waypoint Progress Tracker")]
     public class WaypointProgressTracker : MonoBehaviour
     {
         // This script can be used with any object that is supposed to follow a

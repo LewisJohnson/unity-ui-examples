@@ -22,43 +22,21 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using System;
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Common.Scripts {
 
-    [AddComponentMenu("Scripts/Common/ExtentionMethods")]
-    public static class ExtentionMethods {
-        public static int RoundToTenth(this int i) {
-            return ((int)Math.Round(i / 10.0)) * 10;
-        }
+    [RequireComponent(typeof(Text))]
+    [ExecuteInEditMode]
+    [AddComponentMenu("Scripts/Common/BindTextElementToAnotherTextElement")]
+    public class BindTextToAnotherTextElement : MonoBehaviour {
 
-        public static IEnumerable<IList<T>> Chunks<T>(this IEnumerable<T> xs, int size) {
-            var curr = new List<T>(size);
-
-            foreach (var x in xs) {
-                curr.Add(x);
-                if (curr.Count == size) {
-                    yield return curr;
-                    curr = new List<T>(size);
-                }
-            }
-        }
-
-        public static IEnumerable<T[]> ChunksAsArray<T>(this IEnumerable<T> xs, int size) {
-            var curr = new T[size];
-
-            int i = 0;
-
-            foreach (var x in xs) {
-                curr[i % size] = x;
-
-                if (++i % size == 0) {
-                    yield return curr;
-                    curr = new T[size];
-                }
-            }
+        public Text TargetText;
+        [MenuItem("MyMenu/Do Something")]
+        void Update() {
+            this.GetComponent<Text>().text = TargetText.text;
         }
     }
 }

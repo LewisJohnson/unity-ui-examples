@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Utility
 {
+    [AddComponentMenu("Scripts/Standard Assets/Utility/AutoMove And Rotate")]
     public class AutoMoveAndRotate : MonoBehaviour
     {
         public Vector3andSpace moveUnitsPerSecond;

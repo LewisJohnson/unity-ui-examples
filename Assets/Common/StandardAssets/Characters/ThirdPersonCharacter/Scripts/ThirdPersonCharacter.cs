@@ -5,7 +5,8 @@ namespace Assets.Common.StandardAssets.Characters.ThirdPersonCharacter.Scripts
 	[RequireComponent(typeof(Rigidbody))]
 	[RequireComponent(typeof(CapsuleCollider))]
 	[RequireComponent(typeof(Animator))]
-	public class ThirdPersonCharacter : MonoBehaviour
+    [AddComponentMenu("Scripts/Standard Assets/Characters/Third Person/Third Person Character")]
+    public class ThirdPersonCharacter : MonoBehaviour
 	{
 		[SerializeField] float m_MovingTurnSpeed = 360;
 		[SerializeField] float m_StationaryTurnSpeed = 180;

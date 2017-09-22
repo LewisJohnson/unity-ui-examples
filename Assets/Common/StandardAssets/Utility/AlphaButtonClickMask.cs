@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 namespace Assets.Common.StandardAssets.Utility
 {
+    [AddComponentMenu("Scripts/Standard Assets/Utility/AlphaButton Click Mask")]
     public class AlphaButtonClickMask : MonoBehaviour, ICanvasRaycastFilter 
     {
         protected Image _image;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Cameras.Scripts
 {
+    [AddComponentMenu("Scripts/Cameras/ProtectCameraFromWallClip")]
     public class ProtectCameraFromWallClip : MonoBehaviour
     {
         public float clipMoveTime = 0.05f;              // time taken to move when avoiding cliping (low value = fast, which it should be)

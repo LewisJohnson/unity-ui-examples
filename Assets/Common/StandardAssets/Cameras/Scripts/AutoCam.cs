@@ -1,12 +1,9 @@
 using UnityEngine;
 
-#if UNITY_EDITOR
-
-#endif
-
 namespace Assets.Common.StandardAssets.Cameras.Scripts
 {
     [ExecuteInEditMode]
+    [AddComponentMenu("Scripts/Cameras/AutoCam")]
     public class AutoCam : PivotBasedCameraRig
     {
         [SerializeField] private float m_MoveSpeed = 3; // How fast the rig will move to keep up with target's position

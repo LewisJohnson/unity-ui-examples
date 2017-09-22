@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Cameras.Scripts
 {
+    [AddComponentMenu("Scripts/Cameras/LookatTarget")]
     public class LookatTarget : AbstractTargetFollower
     {
         // A simple script to make one object look at another,

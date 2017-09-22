@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Assets.Common.StandardAssets.Utility
 {
     [Serializable]
+    [AddComponentMenu("Scripts/Cameras/FOVKick")]
     public class FOVKick
     {
         public Camera Camera;                           // optional camera setup, if null the main camera will be used

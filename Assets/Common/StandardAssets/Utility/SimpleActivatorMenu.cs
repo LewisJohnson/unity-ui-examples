@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Utility
 {
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Simple Activator Menu")]
     public class SimpleActivatorMenu : MonoBehaviour
     {
         // An incredibly simple menu which, when given references

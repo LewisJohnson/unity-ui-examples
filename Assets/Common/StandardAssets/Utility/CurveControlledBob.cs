@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Assets.Common.StandardAssets.Utility
 {
     [Serializable]
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Curve Controlled Bob")]
     public class CurveControlledBob
     {
         public float HorizontalBobRange = 0.33f;

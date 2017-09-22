@@ -4,6 +4,7 @@ using Random = UnityEngine.Random;
 
 namespace Assets.Common.StandardAssets.Utility
 {
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Particle System Destroyer")]
     public class ParticleSystemDestroyer : MonoBehaviour
     {
         // allows a particle system to exist for a specified duration,

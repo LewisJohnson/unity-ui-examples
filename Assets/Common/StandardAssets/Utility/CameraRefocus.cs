@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Utility
 {
+    [AddComponentMenu("Scripts/Cameras/Camera Refocus")]
     public class CameraRefocus
     {
         public Camera Camera;

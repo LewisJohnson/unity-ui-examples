@@ -7,6 +7,7 @@ namespace Assets.Common.StandardAssets.Characters.FirstPersonCharacter.Scripts
 {
     [RequireComponent(typeof (CharacterController))]
     [RequireComponent(typeof (AudioSource))]
+    [AddComponentMenu("Scripts/Standard Assets/Characters/First Person/First Person Controller")]
     public class FirstPersonController : MonoBehaviour
     {
         [SerializeField] private bool m_IsWalking;

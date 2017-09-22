@@ -6,6 +6,7 @@ namespace Assets.Common.StandardAssets.Characters.FirstPersonCharacter.Scripts
 {
     [RequireComponent(typeof (Rigidbody))]
     [RequireComponent(typeof (CapsuleCollider))]
+    [AddComponentMenu("Scripts/Standard Assets/Characters/First Person/Rigidbody First Person Controller")]
     public class RigidbodyFirstPersonController : MonoBehaviour
     {
         [Serializable]

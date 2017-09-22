@@ -33,6 +33,7 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
     /// <summary>
     /// Please don't use this. It works but is a hot mess.
     /// </summary>
+    [AddComponentMenu("Scripts/Fizzlefade/TerribleFizzleFade")]
     public class TerribleFizzleFade : MonoBehaviour {
 
         public GameObject Image;

@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace Assets.Common.Cameras.Scripts {
+    [AddComponentMenu("Scripts/Cameras/GroundCam")]
     public class GroundCam : MonoBehaviour {
         private Transform _mChildCameraTransform;
         private Vector2 _mInput;

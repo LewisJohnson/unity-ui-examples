@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Assets.Common.StandardAssets.Utility
 {
 
+    [AddComponentMenu("Scripts/Standard Assets/Utility/AutoMobileShaderSwitch")]
     public class AutoMobileShaderSwitch : MonoBehaviour
     {
         [SerializeField] private ReplacementList m_ReplacementList;

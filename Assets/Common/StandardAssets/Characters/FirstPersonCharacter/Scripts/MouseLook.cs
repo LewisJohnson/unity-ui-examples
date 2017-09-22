@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Assets.Common.StandardAssets.Characters.FirstPersonCharacter.Scripts
 {
     [Serializable]
+    [AddComponentMenu("Scripts/Standard Assets/Characters/First Person/Mouse Look")]
     public class MouseLook
     {
         public float XSensitivity = 2f;

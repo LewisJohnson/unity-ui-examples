@@ -3,6 +3,7 @@ using Object = UnityEngine.Object;
 
 namespace Assets.Common.StandardAssets.Utility
 {
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Activate Trigger")]
     public class ActivateTrigger : MonoBehaviour
     {
         // A multi-purpose script which causes an action to occur when

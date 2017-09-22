@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Characters.FirstPersonCharacter.Scripts
 {
+    [AddComponentMenu("Scripts/Standard Assets/Characters/First Person/Head bob")]
     public class HeadBob : MonoBehaviour
     {
         public Camera Camera;

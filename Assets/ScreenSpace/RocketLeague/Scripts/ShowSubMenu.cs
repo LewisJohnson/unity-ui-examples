@@ -27,6 +27,7 @@ using UnityEngine.UI;
 namespace Assets.ScreenSpace.RocketLeague.Scripts
 {
     [RequireComponent(typeof(Toggle))]
+    [AddComponentMenu("Scripts/Rocket League/Show Sub Menu")]
     public class ShowSubMenu : MonoBehaviour {
 
         [SerializeField]

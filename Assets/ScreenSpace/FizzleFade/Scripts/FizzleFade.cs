@@ -29,6 +29,11 @@ using UnityEngine.UI;
 using Assets.Common.Scripts;
 
 namespace Assets.ScreenSpace.FizzleFade.Scripts {
+
+    [RequireComponent(typeof(Image))]
+    [RequireComponent(typeof(RectTransform))]
+    
+    [AddComponentMenu("Scripts/Fizzlefade/FizzleFade")]
     public class FizzleFade : MonoBehaviour {
 
         public Texture2D FizzleTexture2D;

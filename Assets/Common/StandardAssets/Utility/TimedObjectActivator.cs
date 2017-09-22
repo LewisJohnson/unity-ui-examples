@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.Common.StandardAssets.Utility
 {
-
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Timed Object Activator")]
     public class TimedObjectActivator : MonoBehaviour
     {
         public enum Action

@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Utility
 {
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Follow Target")]
     public class FollowTarget : MonoBehaviour
     {
         public Transform target;

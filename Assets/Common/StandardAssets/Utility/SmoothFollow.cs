@@ -2,7 +2,8 @@
 
 namespace Assets.Common.StandardAssets.Utility
 {
-	public class SmoothFollow : MonoBehaviour
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Smooth Follow")]
+    public class SmoothFollow : MonoBehaviour
 	{
 
 		// The target we are following

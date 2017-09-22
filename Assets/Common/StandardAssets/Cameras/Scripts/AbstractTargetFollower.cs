@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Cameras.Scripts
 {
+    [AddComponentMenu("Scripts/Cameras/AbstractTargetFollower")]
     public abstract class AbstractTargetFollower : MonoBehaviour
     {
         public enum UpdateType // The available methods of updating are:

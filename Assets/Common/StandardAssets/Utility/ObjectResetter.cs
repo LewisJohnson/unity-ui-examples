@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Utility
 {
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Object Resetter")]
     public class ObjectResetter : MonoBehaviour
     {
         private Vector3 originalPosition;

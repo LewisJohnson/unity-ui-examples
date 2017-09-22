@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Cameras.Scripts
 {
+    [AddComponentMenu("Scripts/Cameras/HandHeldCam")]
     public class HandHeldCam : LookatTarget
     {
         [SerializeField] private float m_SwaySpeed = .5f;

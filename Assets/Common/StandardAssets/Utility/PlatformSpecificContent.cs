@@ -10,6 +10,7 @@ namespace Assets.Common.StandardAssets.Utility
 
     [ExecuteInEditMode]
 #endif
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Platform Specific Content")]
     public class PlatformSpecificContent : MonoBehaviour
 #if UNITY_EDITOR
         , UnityEditor.Build.IActiveBuildTargetChanged

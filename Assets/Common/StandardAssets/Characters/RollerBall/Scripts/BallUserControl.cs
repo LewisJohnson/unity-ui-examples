@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Characters.RollerBall.Scripts
 {
+    [AddComponentMenu("Scripts/Standard Assets/Characters/Ball/Ball User Control")]
     public class BallUserControl : MonoBehaviour
     {
         private Ball ball; // Reference to the ball controller.

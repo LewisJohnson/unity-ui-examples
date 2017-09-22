@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Assets.Common.StandardAssets.Characters.ThirdPersonCharacter.Scripts
 {
     [RequireComponent(typeof (ThirdPersonCharacter))]
+    [AddComponentMenu("Scripts/Standard Assets/Characters/Third Person/Third Person User Control")]
     public class ThirdPersonUserControl : MonoBehaviour
     {
         private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object

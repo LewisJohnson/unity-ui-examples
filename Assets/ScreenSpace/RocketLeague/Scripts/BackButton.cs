@@ -23,8 +23,8 @@ SOFTWARE.
 */
 using UnityEngine;
 
-namespace Assets.ScreenSpace.RocketLeague.Scripts
-{
+namespace Assets.ScreenSpace.RocketLeague.Scripts {
+    [AddComponentMenu("Scripts/Rocket League/Back Button")]
     public class BackButton : MonoBehaviour
     {
 

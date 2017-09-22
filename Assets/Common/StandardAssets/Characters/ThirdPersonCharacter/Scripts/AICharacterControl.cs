@@ -4,6 +4,7 @@ namespace Assets.Common.StandardAssets.Characters.ThirdPersonCharacter.Scripts
 {
     [RequireComponent(typeof (UnityEngine.AI.NavMeshAgent))]
     [RequireComponent(typeof (ThirdPersonCharacter))]
+    [AddComponentMenu("Scripts/Standard Assets/Characters/Third Person/Third Person AI Controller")]
     public class AICharacterControl : MonoBehaviour
     {
         public UnityEngine.AI.NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding

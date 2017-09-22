@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Cameras.Scripts
 {
+    [AddComponentMenu("Scripts/Cameras/PivotBasedCameraRig")]
     public abstract class PivotBasedCameraRig : AbstractTargetFollower
     {
         // This script is designed to be placed on the root object of a camera rig,

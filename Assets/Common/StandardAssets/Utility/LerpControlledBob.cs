@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Assets.Common.StandardAssets.Utility
 {
     [Serializable]
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Lerp Controlled Bob")]
     public class LerpControlledBob
     {
         public float BobDuration;

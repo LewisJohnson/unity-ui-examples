@@ -24,6 +24,7 @@ SOFTWARE.
 using UnityEngine;
 
 namespace Assets.ScreenSpace.Offset.Scripts {
+    [AddComponentMenu("Scripts/Offset/OffsetUI")]
     public class OffestUI : MonoBehaviour {
 
         public float XClampMax = 50;

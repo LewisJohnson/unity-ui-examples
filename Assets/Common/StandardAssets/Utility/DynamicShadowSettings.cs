@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Utility
 {
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Dynamic Shadow Settings")]
     public class DynamicShadowSettings : MonoBehaviour
     {
         public Light sunLight;

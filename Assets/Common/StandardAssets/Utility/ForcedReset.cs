@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 namespace Assets.Common.StandardAssets.Utility
 {
     [RequireComponent(typeof (GUITexture))]
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Forced Reset")]
     public class ForcedReset : MonoBehaviour
     {
         private void Update()

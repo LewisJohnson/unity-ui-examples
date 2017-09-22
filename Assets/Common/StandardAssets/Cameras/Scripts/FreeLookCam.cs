@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Cameras.Scripts
 {
+    [AddComponentMenu("Scripts/Cameras/FreeLookCam")]
     public class FreeLookCam : PivotBasedCameraRig
     {
         // This script is designed to be placed on the root object of a camera rig,

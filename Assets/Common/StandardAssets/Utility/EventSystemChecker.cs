@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace Assets.Common.StandardAssets.Utility
 {
+    [AddComponentMenu("Scripts/Standard Assets/Utility/EventSystem Checker")]
     public class EventSystemChecker : MonoBehaviour
     {
         //public GameObject eventSystem;

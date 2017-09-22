@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Utility
 {
-
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Waypoint Circuit")]
     public class WaypointCircuit : MonoBehaviour
     {
         public WaypointList waypointList = new WaypointList();

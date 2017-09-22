@@ -29,6 +29,7 @@ using UnityEngine;
 namespace Assets.ScreenSpace.RocketLeague.Scripts
 {
     [ExecuteInEditMode]
+    [AddComponentMenu("Scripts/Rocket League/Text Scroll")]
     public class TextScroll : MonoBehaviour
     {
         [SerializeField] private int _mNumRepeats = 0;

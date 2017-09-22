@@ -29,6 +29,7 @@ namespace Assets.ScreenSpace.PercentageBased.Scripts {
 
     [RequireComponent(typeof(RectTransform))]
     [ExecuteInEditMode]
+    [AddComponentMenu("Scripts/CSS/Scaled UI Component")]
     public class ScaledComponent : MonoBehaviour {
 
         public RectTransform Container;

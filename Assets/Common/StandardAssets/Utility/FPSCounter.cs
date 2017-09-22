@@ -4,6 +4,7 @@ using UnityEngine.UI;
 namespace Assets.Common.StandardAssets.Utility
 {
     [RequireComponent(typeof (Text))]
+    [AddComponentMenu("Scripts/Standard Assets/Utility/FPS Counter")]
     public class FPSCounter : MonoBehaviour
     {
         const float fpsMeasurePeriod = 0.5f;

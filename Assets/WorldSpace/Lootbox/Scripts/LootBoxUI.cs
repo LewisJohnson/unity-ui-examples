@@ -27,7 +27,7 @@ using UnityEngine.UI;
 namespace Assets.WorldSpace.Lootbox.Scripts {
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(LootBoxInventoryHandler))]
-
+    [AddComponentMenu("Scripts/Lootbox/LootBoxUI")]
     public class LootBoxUI : MonoBehaviour {
 
         [SerializeField]

@@ -26,6 +26,7 @@ using UnityEngine;
 namespace Assets.ScreenSpace.PercentageBased.Scripts {
     [RequireComponent(typeof(RectTransform))]
     [ExecuteInEditMode]
+    [AddComponentMenu("Scripts/Common/Container")]
     public class Container : MonoBehaviour {
 
         public float Height {

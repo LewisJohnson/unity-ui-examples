@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Cameras.Scripts
 {
+    [AddComponentMenu("Scripts/Cameras/TargetFieldOfView")]
     public class TargetFieldOfView : AbstractTargetFollower
     {
         // This script is primarily designed to be used with the "LookAtTarget" script to enable a

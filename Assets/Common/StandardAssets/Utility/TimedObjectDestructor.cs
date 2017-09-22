@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Utility
 {
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Timed Object Destructor")]
     public class TimedObjectDestructor : MonoBehaviour
     {
         [SerializeField] private float m_TimeOut = 1.0f;

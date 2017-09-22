@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.Utility
 {
+    [AddComponentMenu("Scripts/Standard Assets/Utility/Drag RigidBody")]
     public class DragRigidbody : MonoBehaviour
     {
         const float k_Spring = 50.0f;
