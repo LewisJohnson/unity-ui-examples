@@ -25,6 +25,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts.PlatformSpecif
             {
                 AddAxes(name);
             }
+
             return m_VirtualAxes[name].GetValue;
         }
 
@@ -35,6 +36,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts.PlatformSpecif
             {
                 AddButton(name);
             }
+
             m_VirtualButtons[name].Pressed();
         }
 
@@ -45,6 +47,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts.PlatformSpecif
             {
                 AddButton(name);
             }
+
             m_VirtualButtons[name].Released();
         }
 
@@ -55,6 +58,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts.PlatformSpecif
             {
                 AddAxes(name);
             }
+
             m_VirtualAxes[name].Update(1f);
         }
 
@@ -65,6 +69,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts.PlatformSpecif
             {
                 AddAxes(name);
             }
+
             m_VirtualAxes[name].Update(-1f);
         }
 
@@ -75,6 +80,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts.PlatformSpecif
             {
                 AddAxes(name);
             }
+
             m_VirtualAxes[name].Update(0f);
         }
 
@@ -85,6 +91,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts.PlatformSpecif
             {
                 AddAxes(name);
             }
+
             m_VirtualAxes[name].Update(value);
         }
 

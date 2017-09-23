@@ -35,9 +35,9 @@ namespace Assets.Common.Scripts {
         }
 
         public static IEnumerable<IList<T>> Chunks<T>(this IEnumerable<T> xs, int size) {
-            var curr = new List<T>(size);
+            List<T> curr = new List<T>(size);
 
-            foreach (var x in xs) {
+            foreach (T x in xs) {
                 curr.Add(x);
                 if (curr.Count == size) {
                     yield return curr;
@@ -47,11 +47,11 @@ namespace Assets.Common.Scripts {
         }
 
         public static IEnumerable<T[]> ChunksAsArray<T>(this IEnumerable<T> xs, int size) {
-            var curr = new T[size];
+            T[] curr = new T[size];
 
             int i = 0;
 
-            foreach (var x in xs) {
+            foreach (T x in xs) {
                 curr[i % size] = x;
 
                 if (++i % size == 0) {

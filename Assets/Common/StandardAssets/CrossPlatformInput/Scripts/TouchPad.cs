@@ -60,14 +60,15 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts {
 
 		void CreateVirtualAxes() {
 			// set axes to use
-			m_UseX = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyHorizontal);
-			m_UseY = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyVertical);
+			m_UseX = axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyHorizontal;
+			m_UseY = axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyVertical;
 
 			// create new axes based on axes to use
 			if (m_UseX) {
 				m_HorizontalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
 				CrossPlatformInputManager.RegisterVirtualAxis(m_HorizontalVirtualAxis);
 			}
+
 			if (m_UseY) {
 				m_VerticalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(verticalAxisName);
 				CrossPlatformInputManager.RegisterVirtualAxis(m_VerticalVirtualAxis);
@@ -99,6 +100,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts {
 			if (!m_Dragging) {
 				return;
 			}
+
 			if (Input.touchCount >= m_Id + 1 && m_Id != -1) {
 #if !UNITY_EDITOR
 

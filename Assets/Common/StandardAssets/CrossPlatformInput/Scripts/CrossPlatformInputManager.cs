@@ -61,6 +61,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts {
             if (name == null) {
                 throw new ArgumentNullException("name");
             }
+
             _activeInput.UnRegisterVirtualAxis(name);
         }
 
@@ -226,6 +227,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts {
                 if (_mPressed) {
                     return;
                 }
+
                 _mPressed = true;
                 _mLastPressedFrame = Time.frameCount;
             }
@@ -258,7 +260,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts {
 
             public bool GetButtonUp {
                 get {
-                    return (_mReleasedFrame == Time.frameCount - 1);
+                    return _mReleasedFrame == Time.frameCount - 1;
                 }
             }
         }

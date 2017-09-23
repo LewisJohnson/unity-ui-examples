@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets.Common.StandardAssets.Characters.ThirdPersonCharacter.Scripts
 {
@@ -7,7 +8,7 @@ namespace Assets.Common.StandardAssets.Characters.ThirdPersonCharacter.Scripts
     [AddComponentMenu("Scripts/Standard Assets/Characters/Third Person/Third Person AI Controller")]
     public class AICharacterControl : MonoBehaviour
     {
-        public UnityEngine.AI.NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
+        public NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
         public ThirdPersonCharacter character { get; private set; } // the character we are controlling
         public Transform target;                                    // target to aim for
 
@@ -15,7 +16,7 @@ namespace Assets.Common.StandardAssets.Characters.ThirdPersonCharacter.Scripts
         private void Start()
         {
             // get the components on the object we need ( should not be null due to require component so no need to check )
-            agent = GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
+            agent = GetComponentInChildren<NavMeshAgent>();
             character = GetComponent<ThirdPersonCharacter>();
 
 	        agent.updateRotation = false;

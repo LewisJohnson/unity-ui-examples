@@ -16,34 +16,32 @@ namespace Assets.Common.StandardAssets.Utility
         private SpringJoint m_SpringJoint;
 
 
-        private void Update()
-        {
+        private void Update() {
             // Make sure the user pressed the mouse down
-            if (!Input.GetMouseButtonDown(0))
-            {
+            if (!Input.GetMouseButtonDown(0)) {
                 return;
             }
 
-            var mainCamera = FindCamera();
+            Camera mainCamera = FindCamera();
 
             // We need to actually hit an object
             RaycastHit hit = new RaycastHit();
-            if (
-                !Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition).origin,
-                                 mainCamera.ScreenPointToRay(Input.mousePosition).direction, out hit, 100,
-                                 Physics.DefaultRaycastLayers))
-            {
-                return;
-            }
-            // We need to hit a rigidbody that is not kinematic
-            if (!hit.rigidbody || hit.rigidbody.isKinematic)
-            {
+            if (!Physics.Raycast(
+                    mainCamera.ScreenPointToRay(Input.mousePosition).origin,
+                    mainCamera.ScreenPointToRay(Input.mousePosition).direction,
+                    out hit,
+                    100,
+                    Physics.DefaultRaycastLayers)) {
                 return;
             }
 
-            if (!m_SpringJoint)
-            {
-                var go = new GameObject("Rigidbody dragger");
+            // We need to hit a rigidbody that is not kinematic
+            if (!hit.rigidbody || hit.rigidbody.isKinematic) {
+                return;
+            }
+
+            if (!m_SpringJoint) {
+                GameObject go = new GameObject("Rigidbody dragger");
                 Rigidbody body = go.AddComponent<Rigidbody>();
                 m_SpringJoint = go.AddComponent<SpringJoint>();
                 body.isKinematic = true;
@@ -60,20 +58,20 @@ namespace Assets.Common.StandardAssets.Utility
             StartCoroutine("DragObject", hit.distance);
         }
 
-
         private IEnumerator DragObject(float distance)
         {
-            var oldDrag = m_SpringJoint.connectedBody.drag;
-            var oldAngularDrag = m_SpringJoint.connectedBody.angularDrag;
+            float oldDrag = m_SpringJoint.connectedBody.drag;
+            float oldAngularDrag = m_SpringJoint.connectedBody.angularDrag;
             m_SpringJoint.connectedBody.drag = k_Drag;
             m_SpringJoint.connectedBody.angularDrag = k_AngularDrag;
-            var mainCamera = FindCamera();
+            Camera mainCamera = FindCamera();
             while (Input.GetMouseButton(0))
             {
-                var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
                 m_SpringJoint.transform.position = ray.GetPoint(distance);
                 yield return null;
             }
+
             if (m_SpringJoint.connectedBody)
             {
                 m_SpringJoint.connectedBody.drag = oldDrag;

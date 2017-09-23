@@ -58,16 +58,15 @@ namespace Assets.Common.StandardAssets.Utility
         }
 
 
-        public IEnumerator FOVKickDown()
-        {
-            float t = Mathf.Abs((Camera.fieldOfView - originalFov)/FOVIncrease);
-            while (t > 0)
-            {
-                Camera.fieldOfView = originalFov + (IncreaseCurve.Evaluate(t/TimeToDecrease)*FOVIncrease);
+        public IEnumerator FOVKickDown() {
+            float t = Mathf.Abs((Camera.fieldOfView - originalFov) / FOVIncrease);
+            while (t > 0) {
+                Camera.fieldOfView = originalFov + (IncreaseCurve.Evaluate(t / TimeToDecrease) * FOVIncrease);
                 t -= Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
-            //make sure that fov returns to the original size
+
+            // make sure that fov returns to the original size
             Camera.fieldOfView = originalFov;
         }
     }

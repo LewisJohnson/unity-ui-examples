@@ -21,25 +21,28 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using UnityEngine;
 
 namespace Assets.ScreenSpace.PercentageBased.Scripts {
+
     [RequireComponent(typeof(RectTransform))]
     [ExecuteInEditMode]
     [AddComponentMenu("Scripts/Common/Container")]
     public class Container : MonoBehaviour {
 
         public float Height {
-            get { return GetComponent<RectTransform>().sizeDelta.y; }
+            get { return this.GetComponent<RectTransform>().sizeDelta.y; }
         }
 
         public float Width {
-            get { return GetComponent<RectTransform>().sizeDelta.x; }
+            get { return this.GetComponent<RectTransform>().sizeDelta.x; }
         }
-
 
         private void Update() {
-            GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
+            this.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
         }
+
     }
+
 }

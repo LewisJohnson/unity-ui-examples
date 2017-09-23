@@ -43,7 +43,7 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts {
             m_Ray.direction = -m_Pivot.forward;
 
             // initial check to see if start of spherecast intersects anything
-            var cols = Physics.OverlapSphere(m_Ray.origin, sphereCastRadius);
+            Collider[] cols = Physics.OverlapSphere(m_Ray.origin, sphereCastRadius);
 
             bool initialIntersect = false;
             bool hitSomething = false;

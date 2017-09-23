@@ -22,7 +22,7 @@ namespace Assets.Common.StandardAssets.Utility
             get { return waypointList.items; }
         }
 
-        //this being here will save GC allocs
+        // this being here will save GC allocs
         private int p0n;
         private int p1n;
         private int p2n;
@@ -41,6 +41,7 @@ namespace Assets.Common.StandardAssets.Utility
             {
                 CachePositionsAndDistances();
             }
+
             numPoints = Waypoints.Length;
         }
 
@@ -77,7 +78,6 @@ namespace Assets.Common.StandardAssets.Utility
             p2n = point;
 
             // found point numbers, now find interpolation value between the two middle points
-
             i = Mathf.InverseLerp(distances[p1n], distances[p2n], dist);
 
             if (smoothRoute)
@@ -105,7 +105,6 @@ namespace Assets.Common.StandardAssets.Utility
             else
             {
                 // simple linear lerp between the two points:
-
                 p1n = ((point - 1) + numPoints)%numPoints;
                 p2n = point;
 
@@ -134,8 +133,8 @@ namespace Assets.Common.StandardAssets.Utility
             float accumulateDistance = 0;
             for (int i = 0; i < points.Length; ++i)
             {
-                var t1 = Waypoints[(i)%Waypoints.Length];
-                var t2 = Waypoints[(i + 1)%Waypoints.Length];
+                Transform t1 = Waypoints[i%Waypoints.Length];
+                Transform t2 = Waypoints[(i + 1)%Waypoints.Length];
                 if (t1 != null && t2 != null)
                 {
                     Vector3 p1 = t1.position;
@@ -180,6 +179,7 @@ namespace Assets.Common.StandardAssets.Utility
                         Gizmos.DrawLine(prev, next);
                         prev = next;
                     }
+
                     Gizmos.DrawLine(prev, Waypoints[0].position);
                 }
                 else
@@ -236,20 +236,20 @@ namespace Assets.Common.StandardAssets.Utility
 
 
             // Don't make child fields be indented
-            var indent = EditorGUI.indentLevel;
+            int indent = EditorGUI.indentLevel;
             EditorGUI.indentLevel = 0;
 
-            var items = property.FindPropertyRelative("items");
-            var titles = new string[] {"Transform", "", "", ""};
-            var props = new string[] {"transform", "^", "v", "-"};
-            var widths = new float[] {.7f, .1f, .1f, .1f};
+            SerializedProperty items = property.FindPropertyRelative("items");
+            string[] titles = new[] {"Transform", string.Empty, string.Empty, string.Empty};
+            string[] props = new[] {"transform", "^", "v", "-"};
+            float[] widths = new[] {.7f, .1f, .1f, .1f};
             float lineHeight = 18;
             bool changedLength = false;
             if (items.arraySize > 0)
             {
                 for (int i = -1; i < items.arraySize; ++i)
                 {
-                    var item = items.GetArrayElementAtIndex(i);
+                    SerializedProperty item = items.GetArrayElementAtIndex(i);
 
                     float rowX = x;
                     for (int n = 0; n < props.Length; ++n)
@@ -286,12 +286,14 @@ namespace Assets.Common.StandardAssets.Utility
                                             {
                                                 items.MoveArrayElement(i, i + 1);
                                             }
+
                                             break;
                                         case "^":
                                             if (i < items.arraySize - 1)
                                             {
                                                 items.MoveArrayElement(i, i - 1);
                                             }
+
                                             break;
                                     }
                                 }
@@ -309,7 +311,7 @@ namespace Assets.Common.StandardAssets.Utility
             else
             {
                 // add button
-                var addButtonRect = new Rect((x + position.width) - widths[widths.Length - 1]*inspectorWidth, y,
+                Rect addButtonRect = new Rect((x + position.width) - widths[widths.Length - 1]*inspectorWidth, y,
                     widths[widths.Length - 1]*inspectorWidth, lineHeight);
                 if (GUI.Button(addButtonRect, "+"))
                 {
@@ -320,16 +322,17 @@ namespace Assets.Common.StandardAssets.Utility
             }
 
             // add all button
-            var addAllButtonRect = new Rect(x, y, inspectorWidth, lineHeight);
+            Rect addAllButtonRect = new Rect(x, y, inspectorWidth, lineHeight);
             if (GUI.Button(addAllButtonRect, "Assign using all child objects"))
             {
-                var circuit = property.FindPropertyRelative("circuit").objectReferenceValue as WaypointCircuit;
-                var children = new Transform[circuit.transform.childCount];
+                WaypointCircuit circuit = property.FindPropertyRelative("circuit").objectReferenceValue as WaypointCircuit;
+                Transform[] children = new Transform[circuit.transform.childCount];
                 int n = 0;
                 foreach (Transform child in circuit.transform)
                 {
                     children[n++] = child;
                 }
+
                 Array.Sort(children, new TransformNameComparer());
                 circuit.waypointList.items = new Transform[children.Length];
                 for (n = 0; n < children.Length; ++n)
@@ -337,19 +340,21 @@ namespace Assets.Common.StandardAssets.Utility
                     circuit.waypointList.items[n] = children[n];
                 }
             }
+
             y += lineHeight + spacing;
 
             // rename all button
-            var renameButtonRect = new Rect(x, y, inspectorWidth, lineHeight);
+            Rect renameButtonRect = new Rect(x, y, inspectorWidth, lineHeight);
             if (GUI.Button(renameButtonRect, "Auto Rename numerically from this order"))
             {
-                var circuit = property.FindPropertyRelative("circuit").objectReferenceValue as WaypointCircuit;
+                WaypointCircuit circuit = property.FindPropertyRelative("circuit").objectReferenceValue as WaypointCircuit;
                 int n = 0;
                 foreach (Transform child in circuit.waypointList.items)
                 {
                     child.name = "Waypoint " + (n++).ToString("000");
                 }
             }
+
             y += lineHeight + spacing;
 
             // Set indent back to what it was

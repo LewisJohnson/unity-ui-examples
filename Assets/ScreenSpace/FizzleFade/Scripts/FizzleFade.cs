@@ -21,43 +21,64 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Common.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
-using Assets.Common.Scripts;
+using Random = System.Random;
 
 namespace Assets.ScreenSpace.FizzleFade.Scripts {
 
     [RequireComponent(typeof(Image))]
     [RequireComponent(typeof(RectTransform))]
-    
     [AddComponentMenu("Scripts/Fizzlefade/FizzleFade")]
     public class FizzleFade : MonoBehaviour {
 
         public Texture2D FizzleTexture2D;
         public Color PixelColour = new Color(255, 0, 0, 255);
-        private bool isFilled;
-        private int containerWidth;
+        private readonly int amountOfDivisions = 16;
+
+        private int chunkLoopIndex;
+        private IList<int>[,] combinedChunks;
         private int containerHeight;
+        private int containerWidth;
+        private bool isFilled;
         private IEnumerable<IList<int>> xChunks;
         private IEnumerable<IList<int>> yChunks;
-        private IList<int>[,] combinedChunks;
-        private int amountOfDivisions = 16;
+
+        public static void Shuffle<T>(IList<T> list) {
+            int n = list.Count;
+            Random rng = new Random();
+            while (n > 1) {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+        }
+
+        public void FixedUpdate() {
+            if (!isFilled) {
+                StartCoroutine(WaitAndPrint());
+            }
+        }
 
         public void Start() {
             // Get container info
-            containerWidth = ExtentionMethods.RoundToTenth((int)Math.Ceiling(GetComponent<RectTransform>().sizeDelta.x));
-            containerHeight = ExtentionMethods.RoundToTenth((int)Math.Ceiling(GetComponent<RectTransform>().sizeDelta.y));
+            containerWidth = ((int)Math.Ceiling(GetComponent<RectTransform>().sizeDelta.x)).RoundToTenth();
+            containerHeight = ((int)Math.Ceiling(GetComponent<RectTransform>().sizeDelta.y)).RoundToTenth();
             FizzleTexture2D = new Texture2D(containerWidth, containerHeight, TextureFormat.ARGB32, false);
 
             // Set texture to container
             GetComponent<Image>().material.mainTexture = FizzleTexture2D;
 
             // Fill texture with transparent pixels
-            var fillColorArray = FizzleTexture2D.GetPixels();
-            for (var i = 0; i < fillColorArray.Length; ++i) {
+            Color[] fillColorArray = FizzleTexture2D.GetPixels();
+            for (int i = 0; i < fillColorArray.Length; ++i) {
                 fillColorArray[i] = new Color(0, 0, 0, 0);
             }
 
@@ -68,8 +89,8 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
             int xChunkSize = containerWidth / amountOfDivisions;
             int yChunkSize = containerHeight / 16;
 
-            var _xChunks = new List<int>();
-            var _yChunks = new List<int>();
+            List<int> _xChunks = new List<int>();
+            List<int> _yChunks = new List<int>();
 
             for (int i = 0; i < containerWidth; i++) {
                 _xChunks.Add(i);
@@ -85,24 +106,26 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
             combinedChunks = new IList<int>[amountOfDivisions, 2];
             int j = 0;
             int k = 0;
-            foreach (var item in xChunks) {
+            foreach (IList<int> item in xChunks) {
                 combinedChunks[j, 0] = item;
                 j++;
             }
-            foreach (var item in yChunks) {
+
+            foreach (IList<int> item in yChunks) {
                 combinedChunks[k, 1] = item;
                 k++;
             }
         }
 
-        private int chunkLoopIndex = 0;
         private void SetNextPixel() {
-
             int[,] pixels = new int[combinedChunks[chunkLoopIndex, 0].Count, combinedChunks[chunkLoopIndex, 1].Count];
 
             for (int i = 0; i < combinedChunks[chunkLoopIndex, 0].Count; i++) {
                 for (int j = 0; j < combinedChunks[chunkLoopIndex, 1].Count; j++) {
-                    FizzleTexture2D.SetPixel(combinedChunks[chunkLoopIndex, 0][i], combinedChunks[chunkLoopIndex, 1][j], PixelColour);
+                    FizzleTexture2D.SetPixel(
+                        combinedChunks[chunkLoopIndex, 0][i],
+                        combinedChunks[chunkLoopIndex, 1][j],
+                        PixelColour);
                 }
             }
 
@@ -110,6 +133,7 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
             if (chunkLoopIndex == amountOfDivisions) {
                 isFilled = true;
             }
+
             chunkLoopIndex++;
         }
 
@@ -117,26 +141,6 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
             SetNextPixel();
             yield return new WaitForSeconds(4);
         }
-
-        public void FixedUpdate() {
-            if (!isFilled) {
-                StartCoroutine(WaitAndPrint());
-            }
-        }
-
-        public static void Shuffle<T>(IList<T> list) {
-            int n = list.Count;
-            var rng = new System.Random();
-            while (n > 1) {
-                n--;
-                int k = rng.Next(n + 1);
-                T value = list[k];
-                list[k] = list[n];
-                list[n] = value;
-            }
-        }
     }
 
 }
-
-

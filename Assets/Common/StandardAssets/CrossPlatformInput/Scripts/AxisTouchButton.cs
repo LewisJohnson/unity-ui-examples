@@ -28,6 +28,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts
 			{
 				_mAxis = CrossPlatformInputManager.VirtualAxisReference(AxisName);
 			}
+
 			FindPairedButton();
 		}
 
@@ -35,11 +36,11 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts
 		{
 			// find the other button witch which this button should be paired
 			// (it should have the same axisName)
-			var otherAxisButtons = FindObjectsOfType(typeof(AxisTouchButton)) as AxisTouchButton[];
+			AxisTouchButton[] otherAxisButtons = FindObjectsOfType(typeof(AxisTouchButton)) as AxisTouchButton[];
 
 		    if (otherAxisButtons == null) return;
 
-		    foreach (var axisButton in otherAxisButtons)
+		    foreach (AxisTouchButton axisButton in otherAxisButtons)
 		    {
 		        if (axisButton.AxisName == AxisName && axisButton != this)
 		        {
@@ -55,16 +56,14 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts
 		}
 
 
-		public void OnPointerDown(PointerEventData data)
-		{
-			if (_mPairedWith == null)
-			{
+		public void OnPointerDown(PointerEventData data) {
+			if (_mPairedWith == null) {
 				FindPairedButton();
 			}
+
 			// update the axis and record that the button has been pressed this frame
 			_mAxis.Update(Mathf.MoveTowards(_mAxis.GetValue, AxisValue, ResponseSpeed * Time.deltaTime));
 		}
-
 
 		public void OnPointerUp(PointerEventData data)
 		{

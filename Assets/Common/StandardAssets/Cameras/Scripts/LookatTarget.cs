@@ -16,7 +16,6 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts {
         // on a moving spaceship with a limited angular range)
 
         // to have no constraints on an axis, set the rotationRange greater than 360.
-
         [SerializeField] private Vector2 m_RotationRange;
         [SerializeField] private float m_FollowSpeed = 1;
 
@@ -48,7 +47,7 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts {
             localTarget = transform.InverseTransformPoint(m_Target.position);
             float xAngle = Mathf.Atan2(localTarget.y, localTarget.z) * Mathf.Rad2Deg;
             xAngle = Mathf.Clamp(xAngle, -m_RotationRange.x * 0.5f, m_RotationRange.x * 0.5f);
-            var targetAngles = new Vector3(m_FollowAngles.x + Mathf.DeltaAngle(m_FollowAngles.x, xAngle),
+            Vector3 targetAngles = new Vector3(m_FollowAngles.x + Mathf.DeltaAngle(m_FollowAngles.x, xAngle),
                                            m_FollowAngles.y + Mathf.DeltaAngle(m_FollowAngles.y, yAngle));
 
             // smoothly interpolate the current angles to the target angles

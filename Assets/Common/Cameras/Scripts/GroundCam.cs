@@ -25,13 +25,13 @@ namespace Assets.Common.Cameras.Scripts {
             GetInput(out speed);
 
             // always move along the camera forward as it is the direction that it being aimed at
-            var desiredMove = transform.forward * _mInput.y + transform.right * _mInput.x;
+            Vector3 desiredMove = transform.forward * _mInput.y + transform.right * _mInput.x;
 
             // get a normal for the surface that is being touched to move along it
             _mMoveDir.x = desiredMove.x * speed;
             _mMoveDir.z = desiredMove.z * speed;
 
-            var pos = transform.position;
+            Vector3 pos = transform.position;
             pos.x += _mMoveDir.x;
             pos.z += _mMoveDir.z;
             transform.position = pos;
@@ -45,8 +45,8 @@ namespace Assets.Common.Cameras.Scripts {
 
         private void GetInput(out float speed) {
             // Read input
-            var horizontal = Input.GetAxis("Horizontal");
-            var vertical = Input.GetAxis("Vertical");
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
 
             speed = Input.GetKey(KeyCode.LeftShift) ? MBoostSpeed : MMoveSpeed;
             _mInput = new Vector2(horizontal, vertical);
@@ -77,8 +77,8 @@ namespace Assets.Common.Cameras.Scripts {
 
 
         public void LookRotation(Transform character, Transform camera, float yRotOptional = 0f) {
-            var yRot = Input.GetAxis("Mouse X") * XSensitivity;
-            var xRot = Input.GetAxis("Mouse Y") * YSensitivity;
+            float yRot = Input.GetAxis("Mouse X") * XSensitivity;
+            float xRot = Input.GetAxis("Mouse Y") * YSensitivity;
 
             if (yRotOptional != 0f) m_CharacterTargetRot *= Quaternion.Euler(0f, yRotOptional, 0f);
             else m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
@@ -133,7 +133,7 @@ namespace Assets.Common.Cameras.Scripts {
             q.z /= q.w;
             q.w = 1.0f;
 
-            var angleX = 2.0f * Mathf.Rad2Deg * Mathf.Atan(q.x);
+            float angleX = 2.0f * Mathf.Rad2Deg * Mathf.Atan(q.x);
 
             angleX = Mathf.Clamp(angleX, MinimumX, MaximumX);
 

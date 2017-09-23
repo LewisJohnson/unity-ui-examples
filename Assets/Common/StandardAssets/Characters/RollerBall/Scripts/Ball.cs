@@ -14,13 +14,12 @@ namespace Assets.Common.StandardAssets.Characters.RollerBall.Scripts
         private Rigidbody m_Rigidbody;
 
 
-        private void Start()
-        {
+        private void Start() {
             m_Rigidbody = GetComponent<Rigidbody>();
+
             // Set the maximum angular velocity.
             GetComponent<Rigidbody>().maxAngularVelocity = m_MaxAngularVelocity;
         }
-
 
         public void Move(Vector3 moveDirection, bool jump)
         {

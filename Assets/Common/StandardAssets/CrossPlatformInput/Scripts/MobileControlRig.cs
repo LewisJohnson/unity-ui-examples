@@ -1,6 +1,9 @@
-using UnityEngine;
-#if UNITY_EDITOR
 using UnityEditor;
+
+using UnityEngine;
+using UnityEngine.EventSystems;
+#if UNITY_EDITOR
+
 #endif
 
 
@@ -18,8 +21,6 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts
 
         // This define is set or unset by a menu item that is included with
         // the Cross Platform Input package.
-
-
 #if !UNITY_EDITOR
 	void OnEnable()
 	{
@@ -38,17 +39,17 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts
         private void Start()
         {
 #if UNITY_EDITOR
-            if (Application.isPlaying) //if in the editor, need to check if we are playing, as start is also called just after exiting play
+            if (Application.isPlaying) // if in the editor, need to check if we are playing, as start is also called just after exiting play
 #endif
             {
-                UnityEngine.EventSystems.EventSystem system = GameObject.FindObjectOfType<UnityEngine.EventSystems.EventSystem>();
+                EventSystem system = GameObject.FindObjectOfType<EventSystem>();
 
                 if (system == null)
-                {//the scene have no event system, spawn one
+                {// the scene have no event system, spawn one
                     GameObject o = new GameObject("EventSystem");
 
-                    o.AddComponent<UnityEngine.EventSystems.EventSystem>();
-                    o.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
+                    o.AddComponent<EventSystem>();
+                    o.AddComponent<StandaloneInputModule>();
                 }
             }
         }
@@ -71,6 +72,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts
         {
             CheckEnableControlRig();
         }
+
 #endif
 
 
@@ -97,6 +99,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts
         {
             CheckEnableControlRig();
         }
+
 #endif
     }
 }

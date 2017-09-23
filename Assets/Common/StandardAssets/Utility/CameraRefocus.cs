@@ -43,6 +43,7 @@ namespace Assets.Common.StandardAssets.Utility
                 m_Refocus = true;
                 return;
             }
+
             m_Refocus = false;
         }
 

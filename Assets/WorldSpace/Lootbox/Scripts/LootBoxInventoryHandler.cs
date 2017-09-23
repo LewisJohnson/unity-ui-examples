@@ -21,18 +21,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.WorldSpace.Lootbox.Scripts
-{
+namespace Assets.WorldSpace.Lootbox.Scripts {
+
     [AddComponentMenu("Scripts/Lootbox/LootBoxInventoryHandler")]
     public class LootBoxInventoryHandler : MonoBehaviour {
 
-        public List<string> LootBoxInventory { get; private set; }
-
-        private readonly List<string> _itemNameList = new List<string>
-        {
+        private readonly List<string> itemNameList = new List<string> {
             "Golden Dagger",
             "Dragon Coins",
             "Magical Dust",
@@ -44,27 +42,29 @@ namespace Assets.WorldSpace.Lootbox.Scripts
             "5P Tesco Bag For Life"
         };
 
-        public LootBoxInventoryHandler()
-        {
+        public LootBoxInventoryHandler() {
             LootBoxInventory = new List<string>();
         }
 
-        public void PopulateList() {
-            foreach (string itemName in _itemNameList) {
-                AddToInventory(itemName);
-            }
-        }
+        public List<string> LootBoxInventory { get; private set; }
 
         public void AddToInventory(string s) {
             LootBoxInventory.Add(s);
         }
 
+        public void PopulateList() {
+            foreach (string itemName in itemNameList) {
+                AddToInventory(itemName);
+            }
+        }
+
         public void RemoveFromInventory(string s) {
-            foreach (var item in LootBoxInventory) {
+            foreach (string item in LootBoxInventory) {
                 if (item.Equals(s)) {
                     LootBoxInventory.Remove(item);
                 }
             }
         }
     }
+
 }

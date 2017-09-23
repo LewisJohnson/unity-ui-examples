@@ -35,7 +35,7 @@ namespace Assets.Common.StandardAssets.Utility
             yield return new WaitForSeconds(delay);
 
             // remove any gameobjects added (fire, skid trails, etc)
-            foreach (var t in GetComponentsInChildren<Transform>())
+            foreach (Transform t in GetComponentsInChildren<Transform>())
             {
                 if (!originalStructure.Contains(t))
                 {

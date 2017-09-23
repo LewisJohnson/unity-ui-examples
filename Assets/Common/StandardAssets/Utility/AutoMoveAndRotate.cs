@@ -24,9 +24,10 @@ namespace Assets.Common.StandardAssets.Utility
             float deltaTime = Time.deltaTime;
             if (ignoreTimescale)
             {
-                deltaTime = (Time.realtimeSinceStartup - m_LastRealTime);
+                deltaTime = Time.realtimeSinceStartup - m_LastRealTime;
                 m_LastRealTime = Time.realtimeSinceStartup;
             }
+
             transform.Translate(moveUnitsPerSecond.value*deltaTime, moveUnitsPerSecond.space);
             transform.Rotate(rotateDegreesPerSecond.value*deltaTime, moveUnitsPerSecond.space);
         }

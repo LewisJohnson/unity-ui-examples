@@ -7,7 +7,6 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts {
         // CCTV style camera looking at a target to also adjust its field of view (zoom) to fit the
         // target (so that it zooms in as the target becomes further away).
         // When used with a follow cam, it will automatically use the same target.
-
         [SerializeField] private float m_FovAdjustTime = 1;             // the time taken to adjust the current FOV to the desired target FOV amount.
         [SerializeField] private float m_ZoomAmountMultiplier = 2;      // a multiplier for the FOV amount. The default of 2 makes the field of view twice as wide as required to fit the target.
         [SerializeField] private bool m_IncludeEffectsInSize = false;   // changing this only takes effect on startup, or when new target is assigned.
@@ -45,8 +44,7 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts {
         public static float MaxBoundsExtent(Transform obj, bool includeEffects) {
             // get the maximum bounds extent of object, including all child renderers,
             // but excluding particles and trails, for FOV zooming effect.
-
-            var renderers = obj.GetComponentsInChildren<Renderer>();
+            Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
 
             Bounds bounds = new Bounds();
             bool initBounds = false;
@@ -60,6 +58,7 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts {
                     }
                 }
             }
+
             float max = Mathf.Max(bounds.extents.x, bounds.extents.y, bounds.extents.z);
             return max;
         }

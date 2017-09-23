@@ -14,14 +14,14 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts {
         protected override void FollowTarget(float deltaTime) {
             base.FollowTarget(deltaTime);
 
-            float bx = (Mathf.PerlinNoise(0, Time.time * m_SwaySpeed) - 0.5f);
-            float by = (Mathf.PerlinNoise(0, (Time.time * m_SwaySpeed) + 100)) - 0.5f;
+            float bx = Mathf.PerlinNoise(0, Time.time * m_SwaySpeed) - 0.5f;
+            float by = Mathf.PerlinNoise(0, (Time.time * m_SwaySpeed) + 100) - 0.5f;
 
             bx *= m_BaseSwayAmount;
             by *= m_BaseSwayAmount;
 
             float tx = (Mathf.PerlinNoise(0, Time.time * m_SwaySpeed) - 0.5f) + m_TrackingBias;
-            float ty = ((Mathf.PerlinNoise(0, (Time.time * m_SwaySpeed) + 100)) - 0.5f) + m_TrackingBias;
+            float ty = (Mathf.PerlinNoise(0, (Time.time * m_SwaySpeed) + 100) - 0.5f) + m_TrackingBias;
 
             tx *= -m_TrackingSwayAmount * m_FollowVelocity.x;
             ty *= m_TrackingSwayAmount * m_FollowVelocity.y;

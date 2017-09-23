@@ -13,7 +13,7 @@ namespace Assets.Common.StandardAssets.Utility
             // if we have forced a reset ...
             if (CrossPlatformInputManager.GetButtonDown("ResetObject"))
             {
-                //... reload the scene
+                // ... reload the scene
                 SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
             }
         }

@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,12 +44,11 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
         }
 
         public void Fizzle(Color pixelColour) {
-
             int width = (int)Math.Ceiling(GetComponent<RectTransform>().sizeDelta.x);
             int height = (int)Math.Ceiling(GetComponent<RectTransform>().sizeDelta.y);
 
-            var xList = new List<int>();
-            var yList = new List<int>();
+            List<int> xList = new List<int>();
+            List<int> yList = new List<int>();
             for (int i = 0; i <= ((int)Math.Round(width / 10.0)) * 10; i += 10) {
                 xList.Add(i);
             }
@@ -62,16 +62,14 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
 
             for (int x = 0; x < xList.Count; x++) {
                 for (int y = 0; y < yList.Count; y++) {
-                    var img = Instantiate(Image, transform);
+                    GameObject img = Instantiate(Image, transform);
                     img.GetComponent<Image>().color = pixelColour;
                     img.GetComponent<RectTransform>().anchoredPosition = new Vector2(xList[x], -yList[y]);
                     img.SetActive(false);
                     StartCoroutine(WaitAndPrint(img, (x * y) / 1000));
                 }
-
             }
         }
-
 
         private IEnumerator WaitAndPrint(GameObject k, float waitTime) {
             yield return new WaitForSeconds(waitTime);
@@ -80,7 +78,7 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
 
         public static void Shuffle<T>(IList<T> list) {
             int n = list.Count;
-            var rng = new Random();
+            Random rng = new Random();
             while (n > 1) {
                 n--;
                 int k = rng.Next(n + 1);
@@ -89,8 +87,7 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
                 list[n] = value;
             }
         }
+
     }
 
 }
-
-

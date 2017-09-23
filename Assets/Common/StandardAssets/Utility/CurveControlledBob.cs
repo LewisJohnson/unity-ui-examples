@@ -43,6 +43,7 @@ namespace Assets.Common.StandardAssets.Utility
             {
                 m_CyclePositionX = m_CyclePositionX - m_Time;
             }
+
             if (m_CyclePositionY > m_Time)
             {
                 m_CyclePositionY = m_CyclePositionY - m_Time;

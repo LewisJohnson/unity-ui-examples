@@ -21,52 +21,33 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.WorldSpace.Lootbox.Scripts {
+
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(LootBoxInventoryHandler))]
     [AddComponentMenu("Scripts/Lootbox/LootBoxUI")]
     public class LootBoxUI : MonoBehaviour {
 
-        [SerializeField]
-        private Vector3 targetPosition = new Vector3(0, 0, 0);
-        [SerializeField]
-        private float smoothFactor = 0f;
-        [SerializeField]
-        private bool _lockCanvasRotateToYAxis;
-        [SerializeField]
-        private bool _autoScrollList;
-
         public GameObject ListItemGameObject;
+        public bool LookAtMainCamera;
         public Transform ScrollViewContentTransform;
         public Transform WorldSpaceCanvasTransform;
-        public bool LookAtMainCamera;
 
-        private void Start() {
-            GetComponent<LootBoxInventoryHandler>().PopulateList();
-            foreach (string item in GetComponent<LootBoxInventoryHandler>().LootBoxInventory) {
-                var listItem = Instantiate(ListItemGameObject, ScrollViewContentTransform);
-                listItem.transform.Find("Text").GetComponent<Text>().text = item;
-            }
-        }
+        [SerializeField]
+        private readonly float smoothFactor = 0f;
 
-        private void Update() {
-            if (LookAtMainCamera) {
-                WorldSpaceCanvasTransform.LookAt(Camera.main.transform);
-                if (_lockCanvasRotateToYAxis) {
-                    var t = WorldSpaceCanvasTransform.rotation;
-                    t.x = 0;
-                    t.z = 0;
-                    WorldSpaceCanvasTransform.rotation = t;
-                }
-            }
+        [SerializeField]
+        private readonly Vector3 targetPosition = new Vector3(0, 0, 0);
 
-            if (_autoScrollList) {
-                ScrollViewContentTransform.localPosition = Vector3.Lerp(ScrollViewContentTransform.position, targetPosition, Time.deltaTime * smoothFactor);
-            }
-        }
+        [SerializeField]
+        private bool autoScrollList;
+
+        [SerializeField]
+        private bool lockCanvasRotateToYAxis;
 
         private void OnTriggerEnter(Collider collision) {
             WorldSpaceCanvasTransform.gameObject.SetActive(true);
@@ -75,5 +56,33 @@ namespace Assets.WorldSpace.Lootbox.Scripts {
         private void OnTriggerExit(Collider collision) {
             WorldSpaceCanvasTransform.gameObject.SetActive(false);
         }
+
+        private void Start() {
+            GetComponent<LootBoxInventoryHandler>().PopulateList();
+            foreach (string item in GetComponent<LootBoxInventoryHandler>().LootBoxInventory) {
+                GameObject listItem = Instantiate(ListItemGameObject, ScrollViewContentTransform);
+                listItem.transform.Find("Text").GetComponent<Text>().text = item;
+            }
+        }
+
+        private void Update() {
+            if (LookAtMainCamera) {
+                WorldSpaceCanvasTransform.LookAt(Camera.main.transform);
+                if (lockCanvasRotateToYAxis) {
+                    Quaternion t = WorldSpaceCanvasTransform.rotation;
+                    t.x = 0;
+                    t.z = 0;
+                    WorldSpaceCanvasTransform.rotation = t;
+                }
+            }
+
+            if (autoScrollList) {
+                ScrollViewContentTransform.localPosition = Vector3.Lerp(
+                    ScrollViewContentTransform.position,
+                    targetPosition,
+                    Time.deltaTime * smoothFactor);
+            }
+        }
     }
+
 }

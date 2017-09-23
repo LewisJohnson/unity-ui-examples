@@ -9,7 +9,6 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts {
         // 	Camera Rig
         // 		Pivot
         // 			Camera
-
         protected Transform m_Cam; // the transform of the camera
         protected Transform m_Pivot; // the point at which the camera pivots around
         protected Vector3 m_LastTargetPosition;

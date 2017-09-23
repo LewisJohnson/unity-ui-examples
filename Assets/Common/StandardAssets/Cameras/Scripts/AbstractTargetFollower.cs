@@ -3,8 +3,8 @@ using UnityEngine;
 namespace Assets.Common.StandardAssets.Cameras.Scripts {
     [AddComponentMenu("Scripts/Cameras/AbstractTargetFollower")]
     public abstract class AbstractTargetFollower : MonoBehaviour {
-        public enum UpdateType // The available methods of updating are:
-        {
+        public enum UpdateType {
+            // The available methods of updating are:
             FixedUpdate, // Update in FixedUpdate (for tracking rigidbodies).
             LateUpdate, // Update in LateUpdate. (for tracking objects that are moved in Update)
             ManualUpdate, // user must call to update camera
@@ -23,6 +23,7 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts {
             if (m_AutoTargetPlayer) {
                 FindAndTargetPlayer();
             }
+
             if (m_Target == null)
                 return;
             targetRigidbody = m_Target.GetComponent<Rigidbody>();
@@ -35,6 +36,7 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts {
             if (m_AutoTargetPlayer && (m_Target == null || !m_Target.gameObject.activeSelf)) {
                 FindAndTargetPlayer();
             }
+
             if (m_UpdateType == UpdateType.FixedUpdate) {
                 FollowTarget(Time.deltaTime);
             }
@@ -47,6 +49,7 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts {
             if (m_AutoTargetPlayer && (m_Target == null || !m_Target.gameObject.activeSelf)) {
                 FindAndTargetPlayer();
             }
+
             if (m_UpdateType == UpdateType.LateUpdate) {
                 FollowTarget(Time.deltaTime);
             }
@@ -59,6 +62,7 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts {
             if (m_AutoTargetPlayer && (m_Target == null || !m_Target.gameObject.activeSelf)) {
                 FindAndTargetPlayer();
             }
+
             if (m_UpdateType == UpdateType.ManualUpdate) {
                 FollowTarget(Time.deltaTime);
             }
@@ -69,7 +73,7 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts {
 
         public void FindAndTargetPlayer() {
             // auto target an object tagged player, if no target has been assigned
-            var targetObj = GameObject.FindGameObjectWithTag("Player");
+            GameObject targetObj = GameObject.FindGameObjectWithTag("Player");
             if (targetObj) {
                 SetTarget(targetObj.transform);
             }

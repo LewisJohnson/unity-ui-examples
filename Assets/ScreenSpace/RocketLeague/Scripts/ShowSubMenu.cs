@@ -21,61 +21,66 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.ScreenSpace.RocketLeague.Scripts
-{
+namespace Assets.ScreenSpace.RocketLeague.Scripts {
+
     [RequireComponent(typeof(Toggle))]
     [AddComponentMenu("Scripts/Rocket League/Show Sub Menu")]
     public class ShowSubMenu : MonoBehaviour {
 
         [SerializeField]
-        private Transform _submenuGameTransform;
+        private Transform backButtonTransform;
+
+        private bool menuOpen;
 
         [SerializeField]
-        private Transform _backButtonTransform;
-
-        private bool _menuOpen;
-
-        // Use this for initialization
-        void Start() {
-            if (_submenuGameTransform == null) {
-                Debug.LogWarning("Submenu has not been assigned.");
-            }
-        }
+        private Transform submenuGameTransform;
 
         public void OnMouseEnter() {
-            if (!gameObject.GetComponent<ShowSubMenu>().enabled || _submenuGameTransform == null)
+            if (!gameObject.GetComponent<ShowSubMenu>().enabled || submenuGameTransform == null) {
                 return;
-            _submenuGameTransform.gameObject.SetActive(true);
+            }
+
+            submenuGameTransform.gameObject.SetActive(true);
         }
 
         public void OnMouseExit() {
-            if (!gameObject.GetComponent<ShowSubMenu>().enabled || _menuOpen || _submenuGameTransform == null)
+            if (!gameObject.GetComponent<ShowSubMenu>().enabled || menuOpen || submenuGameTransform == null) {
                 return;
-            _submenuGameTransform.gameObject.SetActive(false);
+            }
+
+            submenuGameTransform.gameObject.SetActive(false);
         }
 
         public void ToggleChange() {
             if (GetComponent<Toggle>().isOn) {
-                _menuOpen = true;
+                menuOpen = true;
 
-                _backButtonTransform.gameObject.SetActive(true);
-                _backButtonTransform.GetComponent<BackButton>().SubMenuGameObject = _submenuGameTransform.gameObject;
+                backButtonTransform.gameObject.SetActive(true);
+                backButtonTransform.GetComponent<BackButton>().SubMenuGameObject = submenuGameTransform.gameObject;
 
                 transform.parent.GetComponent<Animation>().Play();
-                _submenuGameTransform.GetComponent<Animation>().Play();
+                submenuGameTransform.GetComponent<Animation>().Play();
             } else {
-                _menuOpen = false;
+                menuOpen = false;
 
-                _backButtonTransform.gameObject.SetActive(false);
-                _backButtonTransform.GetComponent<BackButton>().SubMenuGameObject = null;
+                backButtonTransform.gameObject.SetActive(false);
+                backButtonTransform.GetComponent<BackButton>().SubMenuGameObject = null;
 
-                _submenuGameTransform.gameObject.SetActive(false);
-                _submenuGameTransform.GetComponent<CanvasGroup>().alpha = 0.3f;
+                submenuGameTransform.gameObject.SetActive(false);
+                submenuGameTransform.GetComponent<CanvasGroup>().alpha = 0.3f;
             }
+        }
 
+        // Use this for initialization
+        private void Start() {
+            if (submenuGameTransform == null) {
+                Debug.LogWarning("Submenu has not been assigned.");
+            }
         }
     }
+
 }

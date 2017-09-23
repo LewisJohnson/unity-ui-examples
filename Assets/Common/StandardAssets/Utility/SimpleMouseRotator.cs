@@ -43,36 +43,34 @@ namespace Assets.Common.StandardAssets.Utility
             // read input from mouse or mobile controls
             float inputH;
             float inputV;
-            if (relative)
-            {
+            if (relative) {
                 inputH = CrossPlatformInputManager.GetAxis("Mouse X");
                 inputV = CrossPlatformInputManager.GetAxis("Mouse Y");
 
                 // wrap values to avoid springing quickly the wrong way from positive to negative
-                if (m_TargetAngles.y > 180)
-                {
+                if (m_TargetAngles.y > 180) {
                     m_TargetAngles.y -= 360;
                     m_FollowAngles.y -= 360;
                 }
-                if (m_TargetAngles.x > 180)
-                {
+
+                if (m_TargetAngles.x > 180) {
                     m_TargetAngles.x -= 360;
                     m_FollowAngles.x -= 360;
                 }
-                if (m_TargetAngles.y < -180)
-                {
+
+                if (m_TargetAngles.y < -180) {
                     m_TargetAngles.y += 360;
                     m_FollowAngles.y += 360;
                 }
-                if (m_TargetAngles.x < -180)
-                {
+
+                if (m_TargetAngles.x < -180) {
                     m_TargetAngles.x += 360;
                     m_FollowAngles.x += 360;
                 }
 
-#if MOBILE_INPUT
-            // on mobile, sometimes we want input mapped directly to tilt value,
-            // so it springs back automatically when the look input is released.
+#if MOBILE_INPUT // on mobile, sometimes we want input mapped directly to tilt value,
+
+// so it springs back automatically when the look input is released.
 			if (autoZeroHorizontalOnMobile) {
 				m_TargetAngles.y = Mathf.Lerp (-rotationRange.y * 0.5f, rotationRange.y * 0.5f, inputH * .5f + .5f);
 			} else {
@@ -84,16 +82,16 @@ namespace Assets.Common.StandardAssets.Utility
 				m_TargetAngles.x += inputV * rotationSpeed;
 			}
 #else
+
                 // with mouse input, we have direct control with no springback required.
-                m_TargetAngles.y += inputH*rotationSpeed;
-                m_TargetAngles.x += inputV*rotationSpeed;
+                m_TargetAngles.y += inputH * rotationSpeed;
+                m_TargetAngles.x += inputV * rotationSpeed;
 #endif
 
                 // clamp values to allowed range
-                m_TargetAngles.y = Mathf.Clamp(m_TargetAngles.y, -rotationRange.y*0.5f, rotationRange.y*0.5f);
-                m_TargetAngles.x = Mathf.Clamp(m_TargetAngles.x, -rotationRange.x*0.5f, rotationRange.x*0.5f);
-            }
-            else
+                m_TargetAngles.y = Mathf.Clamp(m_TargetAngles.y, -rotationRange.y * 0.5f, rotationRange.y * 0.5f);
+                m_TargetAngles.x = Mathf.Clamp(m_TargetAngles.x, -rotationRange.x * 0.5f, rotationRange.x * 0.5f);
+            } else
             {
                 inputH = Input.mousePosition.x;
                 inputV = Input.mousePosition.y;

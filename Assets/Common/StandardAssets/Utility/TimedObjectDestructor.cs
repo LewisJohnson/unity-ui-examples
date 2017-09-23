@@ -21,6 +21,7 @@ namespace Assets.Common.StandardAssets.Utility
             {
                 transform.DetachChildren();
             }
+
             DestroyObject(gameObject);
         }
     }

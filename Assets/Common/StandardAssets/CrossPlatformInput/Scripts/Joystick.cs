@@ -31,7 +31,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts {
 		}
 
 		void UpdateVirtualAxes(Vector3 value) {
-			var delta = m_StartPos - value;
+			Vector3 delta = m_StartPos - value;
 			delta.y = -delta.y;
 			delta /= MovementRange;
 			if (m_UseX) {
@@ -45,14 +45,15 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts {
 
 		void CreateVirtualAxes() {
 			// set axes to use
-			m_UseX = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyHorizontal);
-			m_UseY = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyVertical);
+			m_UseX = axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyHorizontal;
+			m_UseY = axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyVertical;
 
 			// create new axes based on axes to use
 			if (m_UseX) {
 				m_HorizontalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
 				CrossPlatformInputManager.RegisterVirtualAxis(m_HorizontalVirtualAxis);
 			}
+
 			if (m_UseY) {
 				m_VerticalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(verticalAxisName);
 				CrossPlatformInputManager.RegisterVirtualAxis(m_VerticalVirtualAxis);
@@ -74,6 +75,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts {
 				delta = Mathf.Clamp(delta, -MovementRange, MovementRange);
 				newPos.y = delta;
 			}
+
 			transform.position = new Vector3(m_StartPos.x + newPos.x, m_StartPos.y + newPos.y, m_StartPos.z + newPos.z);
 			UpdateVirtualAxes(transform.position);
 		}
@@ -92,6 +94,7 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts {
 			if (m_UseX) {
 				m_HorizontalVirtualAxis.Remove();
 			}
+
 			if (m_UseY) {
 				m_VerticalVirtualAxis.Remove();
 			}

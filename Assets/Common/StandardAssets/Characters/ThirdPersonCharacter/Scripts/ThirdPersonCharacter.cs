@@ -12,7 +12,7 @@ namespace Assets.Common.StandardAssets.Characters.ThirdPersonCharacter.Scripts
 		[SerializeField] float m_StationaryTurnSpeed = 180;
 		[SerializeField] float m_JumpPower = 12f;
 		[Range(1f, 4f)][SerializeField] float m_GravityMultiplier = 2f;
-		[SerializeField] float m_RunCycleLegOffset = 0.2f; //specific to the character in sample assets, will need to be modified to work with others
+		[SerializeField] float m_RunCycleLegOffset = 0.2f; // specific to the character in sample assets, will need to be modified to work with others
 		[SerializeField] float m_MoveSpeedMultiplier = 1f;
 		[SerializeField] float m_AnimSpeedMultiplier = 1f;
 		[SerializeField] float m_GroundCheckDistance = 0.1f;
@@ -95,6 +95,7 @@ namespace Assets.Common.StandardAssets.Characters.ThirdPersonCharacter.Scripts
 					m_Crouching = true;
 					return;
 				}
+
 				m_Capsule.height = m_CapsuleHeight;
 				m_Capsule.center = m_CapsuleCenter;
 				m_Crouching = false;
@@ -200,23 +201,23 @@ namespace Assets.Common.StandardAssets.Characters.ThirdPersonCharacter.Scripts
 		}
 
 
-		void CheckGroundStatus()
-		{
+		void CheckGroundStatus() {
 			RaycastHit hitInfo;
 #if UNITY_EDITOR
+
 			// helper to visualise the ground check ray in the scene view
-			Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance));
+			Debug.DrawLine(
+				transform.position + (Vector3.up * 0.1f),
+				transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance));
 #endif
+
 			// 0.1f is a small offset to start the ray from inside the character
 			// it is also good to note that the transform position in the sample assets is at the base of the character
-			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
-			{
+			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance)) {
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
 				m_Animator.applyRootMotion = true;
-			}
-			else
-			{
+			} else {
 				m_IsGrounded = false;
 				m_GroundNormal = Vector3.up;
 				m_Animator.applyRootMotion = false;

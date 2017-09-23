@@ -92,16 +92,17 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts {
             float inspectorWidth = position.width;
 
             // Don't make child fields be indented
-            var indent = EditorGUI.indentLevel;
+            int indent = EditorGUI.indentLevel;
             EditorGUI.indentLevel = 0;
 
-            var props = new[] { "type", "axisName" };
-            var widths = new[] { .4f, .6f };
+            string[] props = new[] { "type", "axisName" };
+            float[] widths = new[] { .4f, .6f };
             if (property.FindPropertyRelative("type").enumValueIndex > 0) {
                 // hide name if not a named axis
                 props = new[] { "type" };
                 widths = new[] { 1f };
             }
+
             const float lineHeight = 18;
             for (int n = 0; n < props.Length; ++n) {
                 float w = widths[n] * inspectorWidth;

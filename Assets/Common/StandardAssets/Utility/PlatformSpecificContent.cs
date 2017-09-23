@@ -68,6 +68,7 @@ namespace Assets.Common.StandardAssets.Utility
         {
             CheckEnableContent();
         }
+
 #endif
 
 
@@ -91,6 +92,7 @@ namespace Assets.Common.StandardAssets.Utility
             {
                 EnableContent(true);
             }
+
 #endif
         }
 
@@ -99,7 +101,7 @@ namespace Assets.Common.StandardAssets.Utility
         {
             if (m_Content.Length > 0)
             {
-                foreach (var g in m_Content)
+                foreach (GameObject g in m_Content)
                 {
                     if (g != null)
                     {
@@ -107,6 +109,7 @@ namespace Assets.Common.StandardAssets.Utility
                     }
                 }
             }
+
             if (m_ChildrenOfThisObject)
             {
                 foreach (Transform t in transform)
@@ -114,9 +117,10 @@ namespace Assets.Common.StandardAssets.Utility
                     t.gameObject.SetActive(enabled);
                 }
             }
+
             if (m_MonoBehaviours.Length > 0)
             {
-                foreach (var monoBehaviour in m_MonoBehaviours)
+                foreach (MonoBehaviour monoBehaviour in m_MonoBehaviours)
                 {
                     monoBehaviour.enabled = enabled;
                 }
