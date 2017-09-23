@@ -1,10 +1,8 @@
 using UnityEngine;
 
-namespace Assets.Common.StandardAssets.Cameras.Scripts
-{
+namespace Assets.Common.StandardAssets.Cameras.Scripts {
     [AddComponentMenu("Scripts/Cameras/LookatTarget")]
-    public class LookatTarget : AbstractTargetFollower
-    {
+    public class LookatTarget : AbstractTargetFollower {
         // A simple script to make one object look at another,
         // but with optional constraints which operate relative to
         // this gameobject's initial rotation.
@@ -29,29 +27,27 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts
 
 
         // Use this for initialization
-        protected override void Start()
-        {
+        protected override void Start() {
             base.Start();
             m_OriginalRotation = transform.localRotation;
         }
 
 
-        protected override void FollowTarget(float deltaTime)
-        {
+        protected override void FollowTarget(float deltaTime) {
             // we make initial calculations from the original local rotation
             transform.localRotation = m_OriginalRotation;
 
             // tackle rotation around Y first
             Vector3 localTarget = transform.InverseTransformPoint(m_Target.position);
-            float yAngle = Mathf.Atan2(localTarget.x, localTarget.z)*Mathf.Rad2Deg;
+            float yAngle = Mathf.Atan2(localTarget.x, localTarget.z) * Mathf.Rad2Deg;
 
-            yAngle = Mathf.Clamp(yAngle, -m_RotationRange.y*0.5f, m_RotationRange.y*0.5f);
-            transform.localRotation = m_OriginalRotation*Quaternion.Euler(0, yAngle, 0);
+            yAngle = Mathf.Clamp(yAngle, -m_RotationRange.y * 0.5f, m_RotationRange.y * 0.5f);
+            transform.localRotation = m_OriginalRotation * Quaternion.Euler(0, yAngle, 0);
 
             // then recalculate new local target position for rotation around X
             localTarget = transform.InverseTransformPoint(m_Target.position);
-            float xAngle = Mathf.Atan2(localTarget.y, localTarget.z)*Mathf.Rad2Deg;
-            xAngle = Mathf.Clamp(xAngle, -m_RotationRange.x*0.5f, m_RotationRange.x*0.5f);
+            float xAngle = Mathf.Atan2(localTarget.y, localTarget.z) * Mathf.Rad2Deg;
+            xAngle = Mathf.Clamp(xAngle, -m_RotationRange.x * 0.5f, m_RotationRange.x * 0.5f);
             var targetAngles = new Vector3(m_FollowAngles.x + Mathf.DeltaAngle(m_FollowAngles.x, xAngle),
                                            m_FollowAngles.y + Mathf.DeltaAngle(m_FollowAngles.y, yAngle));
 
@@ -60,7 +56,7 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts
 
 
             // and update the gameobject itself
-            transform.localRotation = m_OriginalRotation*Quaternion.Euler(-m_FollowAngles.x, m_FollowAngles.y, 0);
+            transform.localRotation = m_OriginalRotation * Quaternion.Euler(-m_FollowAngles.x, m_FollowAngles.y, 0);
         }
     }
 }

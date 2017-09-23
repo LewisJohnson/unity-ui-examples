@@ -2,317 +2,265 @@ using System;
 using Assets.Common.StandardAssets.CrossPlatformInput.Scripts.PlatformSpecific;
 using UnityEngine;
 
-namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts
-{
-	public static class CrossPlatformInputManager
-	{
-		public enum ActiveInputMethod
-		{
-			Hardware,
-			Touch
-		}
+namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts {
+    [AddComponentMenu("Scripts/Standard Assets/CrossPlatformInput/CrossPlatformInputManager")]
+    public static class CrossPlatformInputManager {
+        public enum ActiveInputMethod {
+            Hardware,
+            Touch
+        }
+
+        private static VirtualInput _activeInput;
+        private static readonly VirtualInput STouchInput;
+        private static readonly VirtualInput SHardwareInput;
 
 
-		private static VirtualInput activeInput;
-
-		private static VirtualInput s_TouchInput;
-		private static VirtualInput s_HardwareInput;
-
-
-		static CrossPlatformInputManager()
-		{
-			s_TouchInput = new MobileInput();
-			s_HardwareInput = new StandaloneInput();
+        static CrossPlatformInputManager() {
+            STouchInput = new MobileInput();
+            SHardwareInput = new StandaloneInput();
 #if MOBILE_INPUT
             activeInput = s_TouchInput;
 #else
-			activeInput = s_HardwareInput;
+            _activeInput = SHardwareInput;
 #endif
-		}
+        }
 
-		public static void SwitchActiveInputMethod(ActiveInputMethod activeInputMethod)
-		{
-			switch (activeInputMethod)
-			{
-				case ActiveInputMethod.Hardware:
-					activeInput = s_HardwareInput;
-					break;
+        public static void SwitchActiveInputMethod(ActiveInputMethod activeInputMethod) {
+            switch (activeInputMethod) {
+                case ActiveInputMethod.Hardware:
+                _activeInput = SHardwareInput;
+                break;
 
-				case ActiveInputMethod.Touch:
-					activeInput = s_TouchInput;
-					break;
-			}
-		}
+                case ActiveInputMethod.Touch:
+                _activeInput = STouchInput;
+                break;
+                default:
+                throw new ArgumentOutOfRangeException("activeInputMethod", activeInputMethod, null);
+            }
+        }
 
-		public static bool AxisExists(string name)
-		{
-			return activeInput.AxisExists(name);
-		}
+        public static bool AxisExists(string name) {
+            return _activeInput.AxisExists(name);
+        }
 
-		public static bool ButtonExists(string name)
-		{
-			return activeInput.ButtonExists(name);
-		}
+        public static bool ButtonExists(string name) {
+            return _activeInput.ButtonExists(name);
+        }
 
-		public static void RegisterVirtualAxis(VirtualAxis axis)
-		{
-			activeInput.RegisterVirtualAxis(axis);
-		}
+        public static void RegisterVirtualAxis(VirtualAxis axis) {
+            _activeInput.RegisterVirtualAxis(axis);
+        }
 
 
-		public static void RegisterVirtualButton(VirtualButton button)
-		{
-			activeInput.RegisterVirtualButton(button);
-		}
+        public static void RegisterVirtualButton(VirtualButton button) {
+            _activeInput.RegisterVirtualButton(button);
+        }
 
 
-		public static void UnRegisterVirtualAxis(string name)
-		{
-			if (name == null)
-			{
-				throw new ArgumentNullException("name");
-			}
-			activeInput.UnRegisterVirtualAxis(name);
-		}
+        public static void UnRegisterVirtualAxis(string name) {
+            if (name == null) {
+                throw new ArgumentNullException("name");
+            }
+            _activeInput.UnRegisterVirtualAxis(name);
+        }
 
 
-		public static void UnRegisterVirtualButton(string name)
-		{
-			activeInput.UnRegisterVirtualButton(name);
-		}
+        public static void UnRegisterVirtualButton(string name) {
+            _activeInput.UnRegisterVirtualButton(name);
+        }
 
 
-		// returns a reference to a named virtual axis if it exists otherwise null
-		public static VirtualAxis VirtualAxisReference(string name)
-		{
-			return activeInput.VirtualAxisReference(name);
-		}
+        // returns a reference to a named virtual axis if it exists otherwise null
+        public static VirtualAxis VirtualAxisReference(string name) {
+            return _activeInput.VirtualAxisReference(name);
+        }
 
 
-		// returns the platform appropriate axis for the given name
-		public static float GetAxis(string name)
-		{
-			return GetAxis(name, false);
-		}
+        // returns the platform appropriate axis for the given name
+        public static float GetAxis(string name) {
+            return GetAxis(name, false);
+        }
 
 
-		public static float GetAxisRaw(string name)
-		{
-			return GetAxis(name, true);
-		}
+        public static float GetAxisRaw(string name) {
+            return GetAxis(name, true);
+        }
 
 
-		// private function handles both types of axis (raw and not raw)
-		private static float GetAxis(string name, bool raw)
-		{
-			return activeInput.GetAxis(name, raw);
-		}
+        // private function handles both types of axis (raw and not raw)
+        private static float GetAxis(string name, bool raw) {
+            return _activeInput.GetAxis(name, raw);
+        }
 
 
-		// -- Button handling --
-		public static bool GetButton(string name)
-		{
-			return activeInput.GetButton(name);
-		}
+        // -- Button handling --
+        public static bool GetButton(string name) {
+            return _activeInput.GetButton(name);
+        }
 
 
-		public static bool GetButtonDown(string name)
-		{
-			return activeInput.GetButtonDown(name);
-		}
+        public static bool GetButtonDown(string name) {
+            return _activeInput.GetButtonDown(name);
+        }
 
 
-		public static bool GetButtonUp(string name)
-		{
-			return activeInput.GetButtonUp(name);
-		}
+        public static bool GetButtonUp(string name) {
+            return _activeInput.GetButtonUp(name);
+        }
 
 
-		public static void SetButtonDown(string name)
-		{
-			activeInput.SetButtonDown(name);
-		}
+        public static void SetButtonDown(string name) {
+            _activeInput.SetButtonDown(name);
+        }
 
 
-		public static void SetButtonUp(string name)
-		{
-			activeInput.SetButtonUp(name);
-		}
+        public static void SetButtonUp(string name) {
+            _activeInput.SetButtonUp(name);
+        }
 
 
-		public static void SetAxisPositive(string name)
-		{
-			activeInput.SetAxisPositive(name);
-		}
+        public static void SetAxisPositive(string name) {
+            _activeInput.SetAxisPositive(name);
+        }
 
 
-		public static void SetAxisNegative(string name)
-		{
-			activeInput.SetAxisNegative(name);
-		}
+        public static void SetAxisNegative(string name) {
+            _activeInput.SetAxisNegative(name);
+        }
 
 
-		public static void SetAxisZero(string name)
-		{
-			activeInput.SetAxisZero(name);
-		}
+        public static void SetAxisZero(string name) {
+            _activeInput.SetAxisZero(name);
+        }
 
 
-		public static void SetAxis(string name, float value)
-		{
-			activeInput.SetAxis(name, value);
-		}
+        public static void SetAxis(string name, float value) {
+            _activeInput.SetAxis(name, value);
+        }
 
 
-		public static Vector3 mousePosition
-		{
-			get { return activeInput.MousePosition(); }
-		}
+        public static Vector3 MousePosition {
+            get { return _activeInput.MousePosition(); }
+        }
 
 
-		public static void SetVirtualMousePositionX(float f)
-		{
-			activeInput.SetVirtualMousePositionX(f);
-		}
+        public static void SetVirtualMousePositionX(float f) {
+            _activeInput.SetVirtualMousePositionX(f);
+        }
 
 
-		public static void SetVirtualMousePositionY(float f)
-		{
-			activeInput.SetVirtualMousePositionY(f);
-		}
+        public static void SetVirtualMousePositionY(float f) {
+            _activeInput.SetVirtualMousePositionY(f);
+        }
 
 
-		public static void SetVirtualMousePositionZ(float f)
-		{
-			activeInput.SetVirtualMousePositionZ(f);
-		}
+        public static void SetVirtualMousePositionZ(float f) {
+            _activeInput.SetVirtualMousePositionZ(f);
+        }
 
 
-		// virtual axis and button classes - applies to mobile input
-		// Can be mapped to touch joysticks, tilt, gyro, etc, depending on desired implementation.
-		// Could also be implemented by other input devices - kinect, electronic sensors, etc
-		public class VirtualAxis
-		{
-			public string name { get; private set; }
-			private float m_Value;
-			public bool matchWithInputManager { get; private set; }
+        // virtual axis and button classes - applies to mobile input
+        // Can be mapped to touch joysticks, tilt, gyro, etc, depending on desired implementation.
+        // Could also be implemented by other input devices - kinect, electronic sensors, etc
+        public class VirtualAxis {
+            public string Name { get; private set; }
+            private float _mValue;
+            public bool MatchWithInputManager { get; private set; }
 
 
-			public VirtualAxis(string name)
-				: this(name, true)
-			{
-			}
+            public VirtualAxis(string name)
+                : this(name, true) {
+            }
 
 
-			public VirtualAxis(string name, bool matchToInputSettings)
-			{
-				this.name = name;
-				matchWithInputManager = matchToInputSettings;
-			}
+            public VirtualAxis(string name, bool matchToInputSettings) {
+                this.Name = name;
+                MatchWithInputManager = matchToInputSettings;
+            }
 
+            // removes an axes from the cross platform input system
+            public void Remove() {
+                UnRegisterVirtualAxis(Name);
+            }
 
-			// removes an axes from the cross platform input system
-			public void Remove()
-			{
-				UnRegisterVirtualAxis(name);
-			}
+            // a controller gameobject (eg. a virtual thumbstick) should update this class
+            public void Update(float value) {
+                _mValue = value;
+            }
 
+            public float GetValue {
+                get { return _mValue; }
+            }
 
-			// a controller gameobject (eg. a virtual thumbstick) should update this class
-			public void Update(float value)
-			{
-				m_Value = value;
-			}
 
+            public float GetValueRaw {
+                get { return _mValue; }
+            }
+        }
 
-			public float GetValue
-			{
-				get { return m_Value; }
-			}
+        // a controller gameobject (eg. a virtual GUI button) should call the
+        // 'pressed' function of this class. Other objects can then read the
+        // Get/Down/Up state of this button.
+        public class VirtualButton {
+            public string Name { get; private set; }
+            public bool MatchWithInputManager { get; private set; }
 
+            private int _mLastPressedFrame = -5;
+            private int _mReleasedFrame = -5;
+            private bool _mPressed;
 
-			public float GetValueRaw
-			{
-				get { return m_Value; }
-			}
-		}
 
-		// a controller gameobject (eg. a virtual GUI button) should call the
-		// 'pressed' function of this class. Other objects can then read the
-		// Get/Down/Up state of this button.
-		public class VirtualButton
-		{
-			public string name { get; private set; }
-			public bool matchWithInputManager { get; private set; }
+            public VirtualButton(string name)
+                : this(name, true) {
+            }
 
-			private int m_LastPressedFrame = -5;
-			private int m_ReleasedFrame = -5;
-			private bool m_Pressed;
 
+            public VirtualButton(string name, bool matchToInputSettings) {
+                this.Name = name;
+                MatchWithInputManager = matchToInputSettings;
+            }
 
-			public VirtualButton(string name)
-				: this(name, true)
-			{
-			}
 
+            // A controller gameobject should call this function when the button is pressed down
+            public void Pressed() {
+                if (_mPressed) {
+                    return;
+                }
+                _mPressed = true;
+                _mLastPressedFrame = Time.frameCount;
+            }
 
-			public VirtualButton(string name, bool matchToInputSettings)
-			{
-				this.name = name;
-				matchWithInputManager = matchToInputSettings;
-			}
 
+            // A controller gameobject should call this function when the button is released
+            public void Released() {
+                _mPressed = false;
+                _mReleasedFrame = Time.frameCount;
+            }
 
-			// A controller gameobject should call this function when the button is pressed down
-			public void Pressed()
-			{
-				if (m_Pressed)
-				{
-					return;
-				}
-				m_Pressed = true;
-				m_LastPressedFrame = Time.frameCount;
-			}
 
+            // the controller gameobject should call Remove when the button is destroyed or disabled
+            public void Remove() {
+                UnRegisterVirtualButton(Name);
+            }
 
-			// A controller gameobject should call this function when the button is released
-			public void Released()
-			{
-				m_Pressed = false;
-				m_ReleasedFrame = Time.frameCount;
-			}
 
+            // these are the states of the button which can be read via the cross platform input system
+            public bool GetButton {
+                get { return _mPressed; }
+            }
 
-			// the controller gameobject should call Remove when the button is destroyed or disabled
-			public void Remove()
-			{
-				UnRegisterVirtualButton(name);
-			}
 
+            public bool GetButtonDown {
+                get {
+                    return _mLastPressedFrame - Time.frameCount == -1;
+                }
+            }
 
-			// these are the states of the button which can be read via the cross platform input system
-			public bool GetButton
-			{
-				get { return m_Pressed; }
-			}
-
-
-			public bool GetButtonDown
-			{
-				get
-				{
-					return m_LastPressedFrame - Time.frameCount == -1;
-				}
-			}
-
-
-			public bool GetButtonUp
-			{
-				get
-				{
-					return (m_ReleasedFrame == Time.frameCount - 1);
-				}
-			}
-		}
-	}
+            public bool GetButtonUp {
+                get {
+                    return (_mReleasedFrame == Time.frameCount - 1);
+                }
+            }
+        }
+    }
 }

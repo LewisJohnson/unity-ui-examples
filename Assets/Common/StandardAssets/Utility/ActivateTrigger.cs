@@ -1,15 +1,12 @@
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Assets.Common.StandardAssets.Utility
-{
+namespace Assets.Common.StandardAssets.Utility {
     [AddComponentMenu("Scripts/Standard Assets/Utility/Activate Trigger")]
-    public class ActivateTrigger : MonoBehaviour
-    {
+    public class ActivateTrigger : MonoBehaviour {
         // A multi-purpose script which causes an action to occur when
         // a trigger collider is entered.
-        public enum Mode
-        {
+        public enum Mode {
             Trigger = 0,    // Just broadcast the action on to the target
             Replace = 1,    // replace target with source
             Activate = 2,   // Activate the target GameObject
@@ -25,70 +22,58 @@ namespace Assets.Common.StandardAssets.Utility
         public bool repeatTrigger = false;
 
 
-        private void DoActivateTrigger()
-        {
+        private void DoActivateTrigger() {
             triggerCount--;
 
-            if (triggerCount == 0 || repeatTrigger)
-            {
+            if (triggerCount == 0 || repeatTrigger) {
                 Object currentTarget = target ?? gameObject;
                 Behaviour targetBehaviour = currentTarget as Behaviour;
                 GameObject targetGameObject = currentTarget as GameObject;
-                if (targetBehaviour != null)
-                {
+                if (targetBehaviour != null) {
                     targetGameObject = targetBehaviour.gameObject;
                 }
 
-                switch (action)
-                {
+                switch (action) {
                     case Mode.Trigger:
-                        if (targetGameObject != null)
-                        {
-                            targetGameObject.BroadcastMessage("DoActivateTrigger");
-                        }
-                        break;
+                    if (targetGameObject != null) {
+                        targetGameObject.BroadcastMessage("DoActivateTrigger");
+                    }
+                    break;
                     case Mode.Replace:
-                        if (source != null)
-                        {
-                            if (targetGameObject != null)
-                            {
-                                Instantiate(source, targetGameObject.transform.position,
-                                            targetGameObject.transform.rotation);
-                                DestroyObject(targetGameObject);
-                            }
+                    if (source != null) {
+                        if (targetGameObject != null) {
+                            Instantiate(source, targetGameObject.transform.position,
+                                        targetGameObject.transform.rotation);
+                            DestroyObject(targetGameObject);
                         }
-                        break;
+                    }
+                    break;
                     case Mode.Activate:
-                        if (targetGameObject != null)
-                        {
-                            targetGameObject.SetActive(true);
-                        }
-                        break;
+                    if (targetGameObject != null) {
+                        targetGameObject.SetActive(true);
+                    }
+                    break;
                     case Mode.Enable:
-                        if (targetBehaviour != null)
-                        {
-                            targetBehaviour.enabled = true;
-                        }
-                        break;
+                    if (targetBehaviour != null) {
+                        targetBehaviour.enabled = true;
+                    }
+                    break;
                     case Mode.Animate:
-                        if (targetGameObject != null)
-                        {
-                            targetGameObject.GetComponent<Animation>().Play();
-                        }
-                        break;
+                    if (targetGameObject != null) {
+                        targetGameObject.GetComponent<Animation>().Play();
+                    }
+                    break;
                     case Mode.Deactivate:
-                        if (targetGameObject != null)
-                        {
-                            targetGameObject.SetActive(false);
-                        }
-                        break;
+                    if (targetGameObject != null) {
+                        targetGameObject.SetActive(false);
+                    }
+                    break;
                 }
             }
         }
 
 
-        private void OnTriggerEnter(Collider other)
-        {
+        private void OnTriggerEnter(Collider other) {
             DoActivateTrigger();
         }
     }

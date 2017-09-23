@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts.PlatformSpecific
 {
+    [AddComponentMenu("Scripts/Standard Assets/CrossPlatformInput/PlatformSpecific/StandaloneInput")]
     public class StandaloneInput : VirtualInput
     {
         public override float GetAxis(string name, bool raw)

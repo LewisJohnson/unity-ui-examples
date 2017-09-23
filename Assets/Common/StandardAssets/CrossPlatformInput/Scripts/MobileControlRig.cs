@@ -1,12 +1,13 @@
-using UnityEditor;
 using UnityEngine;
 #if UNITY_EDITOR
+using UnityEditor;
 #endif
 
 
 namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts
 {
     [ExecuteInEditMode]
+    [AddComponentMenu("Scripts/Standard Assets/CrossPlatformInput/MobileControlRig")]
     public class MobileControlRig : MonoBehaviour
 #if UNITY_EDITOR
         , UnityEditor.Build.IActiveBuildTargetChanged

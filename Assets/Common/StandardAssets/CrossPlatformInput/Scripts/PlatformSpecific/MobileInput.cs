@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts.PlatformSpecific
 {
+    [AddComponentMenu("Scripts/Standard Assets/CrossPlatformInput/PlatformSpecific/MobileInput")]
     public class MobileInput : VirtualInput
     {
         private void AddButton(string name)

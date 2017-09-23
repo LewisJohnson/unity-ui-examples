@@ -2,22 +2,19 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts
-{
+namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts {
 	[RequireComponent(typeof(Image))]
-	public class TouchPad : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
-	{
+	[AddComponentMenu("Scripts/Standard Assets/CrossPlatformInput/TouchPad")]
+	public class TouchPad : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 		// Options for which axes to use
-		public enum AxisOption
-		{
+		public enum AxisOption {
 			Both, // Use both
 			OnlyHorizontal, // Only horizontal
 			OnlyVertical // Only vertical
 		}
 
 
-		public enum ControlStyle
-		{
+		public enum ControlStyle {
 			Absolute, // operates from teh center of the image
 			Relative, // operates from the center of the initial touch
 			Swipe, // swipe to touch touch no maintained center
@@ -50,55 +47,46 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts
 		Vector3 m_PreviousMouse;
 #endif
 
-		void OnEnable()
-		{
+		void OnEnable() {
 			CreateVirtualAxes();
 		}
 
-        void Start()
-        {
+		void Start() {
 #if !UNITY_EDITOR
             m_Image = GetComponent<Image>();
             m_Center = m_Image.transform.position;
 #endif
-        }
+		}
 
-		void CreateVirtualAxes()
-		{
+		void CreateVirtualAxes() {
 			// set axes to use
 			m_UseX = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyHorizontal);
 			m_UseY = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyVertical);
 
 			// create new axes based on axes to use
-			if (m_UseX)
-			{
+			if (m_UseX) {
 				m_HorizontalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
 				CrossPlatformInputManager.RegisterVirtualAxis(m_HorizontalVirtualAxis);
 			}
-			if (m_UseY)
-			{
+			if (m_UseY) {
 				m_VerticalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(verticalAxisName);
 				CrossPlatformInputManager.RegisterVirtualAxis(m_VerticalVirtualAxis);
 			}
 		}
 
-		void UpdateVirtualAxes(Vector3 value)
-		{
+		void UpdateVirtualAxes(Vector3 value) {
 			value = value.normalized;
-			if (m_UseX)
-			{
+			if (m_UseX) {
 				m_HorizontalVirtualAxis.Update(value.x);
 			}
 
-			if (m_UseY)
-			{
+			if (m_UseY) {
 				m_VerticalVirtualAxis.Update(value.y);
 			}
 		}
 
 
-		public void OnPointerDown(PointerEventData data)
-		{
+		public void OnPointerDown(PointerEventData data) {
 			m_Dragging = true;
 			m_Id = data.pointerId;
 #if !UNITY_EDITOR
@@ -107,14 +95,11 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts
 #endif
 		}
 
-		void Update()
-		{
-			if (!m_Dragging)
-			{
+		void Update() {
+			if (!m_Dragging) {
 				return;
 			}
-			if (Input.touchCount >= m_Id + 1 && m_Id != -1)
-			{
+			if (Input.touchCount >= m_Id + 1 && m_Id != -1) {
 #if !UNITY_EDITOR
 
             if (controlStyle == ControlStyle.Swipe)
@@ -136,15 +121,13 @@ namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts
 		}
 
 
-		public void OnPointerUp(PointerEventData data)
-		{
+		public void OnPointerUp(PointerEventData data) {
 			m_Dragging = false;
 			m_Id = -1;
 			UpdateVirtualAxes(Vector3.zero);
 		}
 
-		void OnDisable()
-		{
+		void OnDisable() {
 			if (CrossPlatformInputManager.AxisExists(horizontalAxisName))
 				CrossPlatformInputManager.UnRegisterVirtualAxis(horizontalAxisName);
 

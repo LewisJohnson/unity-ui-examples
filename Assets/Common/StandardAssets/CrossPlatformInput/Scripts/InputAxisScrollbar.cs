@@ -2,11 +2,10 @@ using UnityEngine;
 
 namespace Assets.Common.StandardAssets.CrossPlatformInput.Scripts
 {
+    [AddComponentMenu("Scripts/Standard Assets/CrossPlatformInput/InputAxisScrollbar")]
     public class InputAxisScrollbar : MonoBehaviour
     {
         public string axis;
-
-	    void Update() { }
 
 	    public void HandleInput(float value)
         {

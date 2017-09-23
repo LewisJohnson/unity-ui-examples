@@ -1,10 +1,8 @@
 using UnityEngine;
 
-namespace Assets.Common.StandardAssets.Cameras.Scripts
-{
+namespace Assets.Common.StandardAssets.Cameras.Scripts {
     [AddComponentMenu("Scripts/Cameras/PivotBasedCameraRig")]
-    public abstract class PivotBasedCameraRig : AbstractTargetFollower
-    {
+    public abstract class PivotBasedCameraRig : AbstractTargetFollower {
         // This script is designed to be placed on the root object of a camera rig,
         // comprising 3 gameobjects, each parented to the next:
 
@@ -17,8 +15,7 @@ namespace Assets.Common.StandardAssets.Cameras.Scripts
         protected Vector3 m_LastTargetPosition;
 
 
-        protected virtual void Awake()
-        {
+        protected virtual void Awake() {
             // find the camera in the object hierarchy
             m_Cam = GetComponentInChildren<Camera>().transform;
             m_Pivot = m_Cam.parent;
