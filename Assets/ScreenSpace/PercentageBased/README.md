@@ -1,5 +1,5 @@
 # Percentage Based UI
-![Percentage Based UI demo image](https://raw.githubusercontent.com/LewisJohnson/unity-ui-examples/master/Assets/ScreenSpace/PercentageBased/readme-image.png)
+![Percentage Based UI demo image](./readme-image.jpg)
 
 ### Description
 This UI example is inspired by css, letting the developer create components with left/top and width/height values.

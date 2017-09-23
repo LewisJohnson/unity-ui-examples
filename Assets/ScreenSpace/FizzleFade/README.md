@@ -1,5 +1,5 @@
 # FizzleFade
-![FizzleFade demo image](LINK TO IMAGE)
+![FizzleFade demo image](./readme-image.jpg)
 
 ### Description
 Hello, I am a description which should be replaced so. Please replace me.

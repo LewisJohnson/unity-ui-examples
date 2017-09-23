@@ -1,5 +1,5 @@
 # Prision Architect
-![Prision Architect demo image](https://github.com/LewisJohnson/unity-ui-examples/blob/master/Assets/ScreenSpace/PrisionArchitect/readme-image.png)
+![Prision Architect demo image](./readme-image.jpg)
 
 ### Description
 A building/managment user interface á la [Prision Architect](https://www.introversion.co.uk/prisonarchitect/).
