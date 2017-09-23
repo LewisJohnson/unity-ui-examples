@@ -31,10 +31,12 @@ SSH: ``` git@github.com:LewisJohnson/unity-ui-examples.git ```
 Everyone is welcome to contribute!
 
 📕 Please read the [CONTRIBUTING.md
-](https://github.com/LewisJohnson/unity-ui-examples/blob/master/CONTRIBUTING.md) to see how you can help!
+](./CONTRIBUTING.md) to see how you can help!
 
 📃 You may also need [DOCUMENTATION.md
-](https://github.com/LewisJohnson/unity-ui-examples/blob/master/DOCUMENTATION.md) if you're adding a new example.
+](./DOCUMENTATION.md) if you're adding a new example.
+
+📃 Don't forget this too [STYLE-GUIDELINES.md](./STYLE-GUIDELINES.md)
 
 
 ## License
