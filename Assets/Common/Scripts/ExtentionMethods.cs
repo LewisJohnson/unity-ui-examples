@@ -28,21 +28,20 @@ using UnityEngine;
 
 namespace Assets.Common.Scripts {
 
-    [AddComponentMenu("Scripts/Common/ExtentionMethods")]
+    [AddComponentMenu("Scripts/Common/Extention Methods")]
     public static class ExtentionMethods {
-        public static int RoundToTenth(this int i) {
-            return ((int)Math.Round(i / 10.0)) * 10;
-        }
 
         public static IEnumerable<IList<T>> Chunks<T>(this IEnumerable<T> xs, int size) {
             List<T> curr = new List<T>(size);
 
             foreach (T x in xs) {
                 curr.Add(x);
-                if (curr.Count == size) {
-                    yield return curr;
-                    curr = new List<T>(size);
+                if (curr.Count != size) {
+                    continue;
                 }
+
+                yield return curr;
+                curr = new List<T>(size);
             }
         }
 
@@ -54,11 +53,18 @@ namespace Assets.Common.Scripts {
             foreach (T x in xs) {
                 curr[i % size] = x;
 
-                if (++i % size == 0) {
-                    yield return curr;
-                    curr = new T[size];
+                if (++i % size != 0) {
+                    continue;
                 }
+
+                yield return curr;
+                curr = new T[size];
             }
         }
+
+        public static int RoundToTenth(this int i) {
+            return (int)Math.Round(i / 10.0) * 10;
+        }
     }
+
 }

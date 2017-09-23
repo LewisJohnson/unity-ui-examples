@@ -1,6 +1,4 @@
-#if UNITY_EDITOR
 using UnityEngine;
-#endif
 
 namespace Assets.Common.StandardAssets.Cameras.Scripts {
     [AddComponentMenu("Scripts/Cameras/HandHeldCam")]

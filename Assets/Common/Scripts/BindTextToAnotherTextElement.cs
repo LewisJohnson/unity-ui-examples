@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,9 +33,10 @@ namespace Assets.Common.Scripts {
     public class BindTextToAnotherTextElement : MonoBehaviour {
 
         public Text TargetText;
-        [MenuItem("MyMenu/Do Something")]
-        void Update() {
-            this.GetComponent<Text>().text = TargetText.text;
+
+        public void Update() {
+            GetComponent<Text>().text = TargetText.text;
         }
     }
+
 }
