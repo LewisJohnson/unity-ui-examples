@@ -1,5 +1,5 @@
 # Offest UI
-![Offest demo image](https://github.com/LewisJohnson/unity-ui-examples/blob/master/Assets/Offset/readme-gif.gif)
+![Offest demo image](./readme-image.gif)
 
 ### Description
 This UI example is inspired by games such as No Man's Sky and Destiny, where the UI offsets to the Joystick/Mouse movement. The black bars included are optional as the container is offset, not the children individually.
