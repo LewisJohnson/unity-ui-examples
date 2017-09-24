@@ -22,20 +22,23 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Assets.ScreenSpace.PercentageBased.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 namespace Assets.ScreenSpace.BarChart.Scripts {
 
     [AddComponentMenu("Scripts/Bar Chart/Bar Chart Manager")]
     [RequireComponent(typeof(RectTransform))]
-    [ExecuteInEditMode]
+    //[ExecuteInEditMode]
     public class BarChartManager : MonoBehaviour {
-
-        public BarChartColourStyle BarChartColour = new BarChartColourStyle();
         public GameObject BarChartComponentGameObject;
+        public BarChartColourConfig ChartColourConfig;
+        public BarChartColourStyle ChartColourStyle;
 
         [SerializeField] private Slider.Direction barDirection;
         [SerializeField] private int heightPercentage;
@@ -146,6 +149,10 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
             UpdateVisuals();
         }
 
+        [SuppressMessage(
+            "StyleCop.CSharp.NamingRules",
+            "SA1305:FieldNamesMustNotUseHungarianNotation",
+            Justification = "Reviewed. Suppression is OK here.")]
         public void UpdateVisuals() {
             for (int i = 0; i < transform.childCount; i++) {
                 if (transform.GetChild(i).tag != "Bar") {
@@ -157,11 +164,12 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
                     || transform.GetChild(i).GetComponent<BarChartComponent>() == null) {
                     Debug.LogWarningFormat(
                         transform,
-                        "Manager contains children not fit for purpose.",
+                        "Manager contains child not fit for purpose.",
                         transform.GetChild(i));
                     return;
                 }
 
+                // locals
                 Slider childSlider = transform.GetChild(i).GetComponent<Slider>();
                 ScaledComponent childScaledComponent = transform.GetChild(i).GetComponent<ScaledComponent>();
                 BarChartComponent childBcc = transform.GetChild(i).GetComponent<BarChartComponent>();
@@ -183,7 +191,39 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
                 childScaledComponent.Container = GetComponent<RectTransform>();
                 childScaledComponent.ComponentScale.Height = heightPercentage;
                 childScaledComponent.ComponentScale.Width = widthPercentage;
+
+                // Colour
+                switch (ChartColourStyle) {
+                    case BarChartColourStyle.Solid:
+                        childBcc.Colour = ChartColourConfig.SolidColour;
+                        break;
+                    case BarChartColourStyle.Random:
+                        Random rand = new Random();
+                        int r = rand.Next(0, 255);
+                        int g = rand.Next(0, 255);
+                        int b = rand.Next(0, 255);
+                        childBcc.Colour = new Color(r, g, b);
+                        break;
+                    case BarChartColourStyle.RandomSoft:
+                        Random randSoft = new Random();
+                        int rSoft = randSoft.Next(170, 210);
+                        int gSoft = randSoft.Next(170, 210);
+                        int bSoft = randSoft.Next(170, 210);
+                        childBcc.Colour = new Color(rSoft, gSoft, bSoft);
+                        break;
+                    case BarChartColourStyle.RandomRGB:
+                        break;
+                    case BarChartColourStyle.Gradient:
+                        break;
+                }
             }
+        }
+
+        [Serializable]
+        public class BarChartColourConfig {
+            public Color GardientEndColour;
+            public Color GradientStartColour;
+            public Color SolidColour;
         }
     }
 

@@ -41,9 +41,14 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
 
         public override void OnInspectorGUI() {
             BarChartManager bcmScript = (BarChartManager)target;
+            EditorGUILayout.LabelField(
+                "Bar Chart Manager",
+                new GUIStyle { fontSize = 18, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter });
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
             DrawDefaultInspector();
 
-            if (GUILayout.Button("Update")) {
+            if (GUILayout.Button("Update Styles")) {
                 bcmScript.UpdateVisuals();
             }
 
@@ -52,18 +57,18 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
             EditorGUILayout.LabelField(
                 "Bar Chart Editor",
                 new GUIStyle { fontSize = 18, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter });
-            EditorGUILayout.LabelField("New Bar", new GUIStyle { fontSize = 12, fontStyle = FontStyle.Bold });
+            EditorGUILayout.LabelField("New", new GUIStyle { fontSize = 12, fontStyle = FontStyle.Bold });
 
             value = EditorGUILayout.IntField("Value", value);
             min = EditorGUILayout.IntField("Min", min);
             max = EditorGUILayout.IntField("Max", max);
             showValue = EditorGUILayout.Toggle("Show value text", showValue);
 
-            if (GUILayout.Button("Build Object")) {
+            if (GUILayout.Button("Create")) {
                 bcmScript.AddNewBar(min, max, value, showValue);
             }
 
-            EditorGUILayout.LabelField("Edit bar(s)", new GUIStyle { fontSize = 12, fontStyle = FontStyle.Bold });
+            EditorGUILayout.LabelField("Edit", new GUIStyle { fontSize = 12, fontStyle = FontStyle.Bold });
             for (int i = 0; i < bcmScript.transform.childCount; i++) {
                 
                 EditorGUILayout.LabelField(string.Format("Bar {0}", i), new GUIStyle { fontSize = 10 });
