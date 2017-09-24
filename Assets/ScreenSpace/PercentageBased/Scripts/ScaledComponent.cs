@@ -41,53 +41,50 @@ namespace Assets.ScreenSpace.PercentageBased.Scripts {
         public GameObject DebugText;
 #endif
         public void Start() {
-            this.RefreshUI();
+            RefreshUI();
         }
 
         public void Update() {
-            this.RefreshUI();
+            RefreshUI();
         }
 
         private string PrettyPrint() {
             return string.Format(
                 "Top: {0}%\nLeft: {1}%\nWidth: {2}%\nHeight: {3}%",
-                this.ComponentPosition.Top,
-                this.ComponentPosition.Left,
-                this.ComponentScale.Width,
-                this.ComponentScale.Height);
+                ComponentPosition.Top,
+                ComponentPosition.Left,
+                ComponentScale.Width,
+                ComponentScale.Height);
         }
 
         private void RefreshUI() {
-            var width = this.ComponentScale.Width / 100 * this.Container.GetComponent<Container>().Width;
-            var height = this.ComponentScale.Height / 100 * this.Container.GetComponent<Container>().Height;
+            float width = ComponentScale.Width / 100 * Container.GetComponent<Container>().Width;
+            float height = ComponentScale.Height / 100 * Container.GetComponent<Container>().Height;
 
-            var top = this.ComponentPosition.Top / 100 * this.Container.GetComponent<Container>().Height;
-            var left = this.ComponentPosition.Left / 100 * this.Container.GetComponent<Container>().Width;
+            float top = ComponentPosition.Top / 100 * Container.GetComponent<Container>().Height;
+            float left = ComponentPosition.Left / 100 * Container.GetComponent<Container>().Width;
 
-            this.GetComponent<RectTransform>().sizeDelta = new Vector2(width, height);
-            this.GetComponent<RectTransform>().anchoredPosition = new Vector3(left, top, 0);
+            GetComponent<RectTransform>().sizeDelta = new Vector2(width, height);
+            GetComponent<RectTransform>().anchoredPosition = new Vector3(left, top, 0);
 
 #if UNITY_EDITOR
-            this.DebugText.GetComponent<Text>().text = this.PrettyPrint();
+            if (DebugText != null) {
+                DebugText.GetComponent<Text>().text = PrettyPrint();
+            }
 #endif
         }
-
     }
 
     [Serializable]
     public class Position {
-
         public float Left;
         public float Top;
-
     }
 
     [Serializable]
     public class Scale {
-
         public float Height;
         public float Width;
-
     }
 
 }

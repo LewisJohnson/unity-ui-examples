@@ -11,6 +11,9 @@ These are the guidelines for writing documentation for an example.
 * All words in the page's title must be capitalised, except for conjunctions
   like "of" and "and".
 
+## Notes
+* Please use relative links when possible.
+
 ## Document flow
 
 ### Completed examples
@@ -81,4 +84,4 @@ In the parameters section, you should list all fields/properties that are config
 * Fields/properties should be indented.
 * Sub classes fields/properties should be double indented.
 
-See [HERE](https://github.com/LewisJohnson/unity-ui-examples/blob/master/Assets/ScreenSpace/PercentageBased/README.md) for a good example.
+See [HERE](/Assets/ScreenSpace/PercentageBased/README.md) for a good example of documentation.
