@@ -33,8 +33,8 @@ namespace Assets.ScreenSpace.PercentageBased.Scripts {
     [AddComponentMenu("Scripts/CSS/Scaled UI Component")]
     public class ScaledComponent : MonoBehaviour {
 
-        public Position ComponentPosition;
-        public Scale ComponentScale;
+        public Position ComponentPosition = new Position();
+        public Scale ComponentScale = new Scale();
         public RectTransform Container;
 
 #if UNITY_EDITOR

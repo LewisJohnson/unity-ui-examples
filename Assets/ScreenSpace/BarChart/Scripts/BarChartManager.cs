@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using System;
 using System.Globalization;
 using Assets.ScreenSpace.PercentageBased.Scripts;
 using UnityEngine;
@@ -34,8 +33,8 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
     [RequireComponent(typeof(RectTransform))]
     [ExecuteInEditMode]
     public class BarChartManager : MonoBehaviour {
-        public BarChartColourStyle BarChartColour = new BarChartColourStyle();
 
+        public BarChartColourStyle BarChartColour = new BarChartColourStyle();
         public GameObject BarChartComponentGameObject;
 
         [SerializeField] private Slider.Direction barDirection;
@@ -44,6 +43,33 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
         [SerializeField] private int spacePercentage;
         [SerializeField] private bool wholeNumbers;
         [SerializeField] private int widthPercentage;
+
+        public enum BarChartColourStyle {
+            /// <summary>
+            /// The solid.
+            /// </summary>
+            Solid,
+
+            /// <summary>
+            /// The random.
+            /// </summary>
+            Random,
+
+            /// <summary>
+            /// The random soft.
+            /// </summary>
+            RandomSoft,
+
+            /// <summary>
+            /// The random rgb.
+            /// </summary>
+            RandomRGB,
+
+            /// <summary>
+            /// The gradient.
+            /// </summary>
+            Gradient
+        }
 
         public Slider.Direction BarDirection {
             get { return barDirection; }
@@ -158,11 +184,6 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
                 childScaledComponent.ComponentScale.Height = heightPercentage;
                 childScaledComponent.ComponentScale.Width = widthPercentage;
             }
-        }
-
-        [Serializable]
-        public class BarChartColourStyle {
-            [SerializeField] public Color SolidColour;
         }
     }
 

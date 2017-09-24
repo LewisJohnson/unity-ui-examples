@@ -30,9 +30,9 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
     [AddComponentMenu("Scripts/Bar Chart/Bar Chart Component")]
     [RequireComponent(typeof(Slider))]
     public class BarChartComponent : MonoBehaviour {
-        public Text ValueText;
-        private Color colour = new Color(255, 0, 0);
-        private bool showValueText;
+        [SerializeField] private Color colour = new Color(255, 0, 0);
+        [SerializeField] private bool showValueText;
+        [SerializeField] private Text valueText;
 
         public Color Colour {
             get { return colour; }
@@ -48,6 +48,18 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
                 showValueText = value;
                 UpdateVisuals();
             }
+        }
+
+        public Text ValueText {
+            get { return valueText; }
+            set {
+                valueText = value;
+                UpdateVisuals();
+            }
+        }
+
+        public void Start() {
+            colour = GetComponent<Slider>().fillRect.GetComponent<Image>().color;
         }
 
         public void UpdateVisuals() {
