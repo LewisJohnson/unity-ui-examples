@@ -16,7 +16,7 @@ using UnityEditor;
 ## Guidelines
 
 ### Guideline 1:
-Explict types are preffered. This helps remove guessing work, instead of doing this
+Explicit types are preferred. This helps remove guessing work, instead of doing this
 ```C#
 var fillColorArray= new Color(2, 123, 93);
 var chukSize = 48;
