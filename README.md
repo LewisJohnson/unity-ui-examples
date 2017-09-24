@@ -12,6 +12,7 @@ Each examples has a readme of it's own. So click an example below to find out mo
 - [Prision Architect (Building/Managment)](/Assets/ScreenSpace/PrisionArchitect)
 - [Percentage Based (Like CSS for Unity)](/Assets/ScreenSpace/PercentageBased)
 - [Rocket League (Generic menu and text ticker)](/Assets/ScreenSpace/RocketLeague)
+- [Bar Chart (A customizable bar chart in Unity)](/Assets/ScreenSpace/BarChart)
 
 ### World Space
 - [LootBox (Useful for RPG's)](/Assets/WorldSpace/Lootbox)
@@ -43,27 +44,3 @@ Everyone is welcome to contribute!
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/LewisJohnson/unity-ui-examples/blob/master/LICENSE) for more.
-
-
-## Examples with image
-### Screen Space
-
-| [Rocket League](/Assets/ScreenSpace/RocketLeague)                         | [Prision Architect](/Assets/ScreenSpace/PrisionArchitect)                   | [Percentage Based](/Assets/ScreenSpace/PercentageBased)                  |
-|:-------------------------------------------------------------------------:|-----------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| ![Rocket League Image](/Assets/ScreenSpace/RocketLeague/readme-image.jpg) | ![Prision Architect](/Assets/ScreenSpace/PrisionArchitect/readme-image.jpg) | ![Percentage Based](/Assets/ScreenSpace/PercentageBased/readme-image.jpg) |
-| Generic menu and text ticker                                              | Building/Managment                                                          | Like CSS for Unity                                                       |
-
-| [FizzleFade](/Assets/ScreenSpace/FizzleFade)                   | [Offest](/Assets/ScreenSpace/Offset)                   | Placeholder|
-|:--------------------------------------------------------------:|--------------------------------------------------------|------------|
-| ![FizzleFade](/Assets/ScreenSpace/FizzleFade/readme-image.jpg) | ![Offest](/Assets/ScreenSpace/Offset/readme-image.gif) | ![Placeholder](/Skeleton/readme-image.jpg) |
-| From Wolfenstein 3D                                            | UI Which offset the mouse/joystick                     |            |
-
-
-### World Space
-
-| [Holographic Wrist UI](/Assets/WorldSpace/HolographicWristUI)                    | [LootBox](/Assets/WorldSpace/Lootbox)                   | Placeholder |
-|:--------------------------------------------------------------------------------:|---------------------------------------------------------|------------|
-| ![Holographic Wrist UI](/Assets/WorldSpace/HolographicWristUI/readme-image2.jpg) | ![LootBox](/Assets/WorldSpace/Lootbox/readme-image.jpg) | ![Placeholder](/Skeleton/readme-image.jpg) |
-| A holographic UI on a character's wrist                                          | Useful for RPG's                                        |            |
-
-
