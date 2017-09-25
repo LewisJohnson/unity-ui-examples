@@ -2,7 +2,7 @@
 ![Bar Chart demo image](./readme-image.jpg)
 
 ### Description
-A bar chart implemented in Unity, with help from the [Percentage Based](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/ScreenSpace/PercentageBased) example.
+A bar chart implemented in Unity, with help from the [Percentage Based](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/ScreenSpace/PercentageBased) example. It includes an custom editor for creating and editing your bar chart.
 
 
 | Custom                  | Solid            | Gradient            | Similar Shade            |
@@ -11,14 +11,13 @@ A bar chart implemented in Unity, with help from the [Percentage Based](https://
 
 | Similar Colour            | Random            | Random Soft            | Random RGB            |
 |---------------------------|------------------|---------------------|--------------------------|
-| ![](./similar-colour.jpg) | ![](./random-rgb.png) | ![](./random-soft.png) | ![](./random-rgb.png) |
+| ![](./similar-colour.png) | ![](./random-rgb.png) | ![](./random-soft.png) | ![](./random-rgb.png) |
 
 #### Included: 
 * Bar chart
-* Bar chart Editor
-* Bar chart colour settings
-* Bar chart title setting
-
+* Custom bar chart Editor
+* Multipule chart colour settings
+* Title, X-Axis and Y-axis labels
 
 ### Supported aspect ratios
 * 5:4 ✅
