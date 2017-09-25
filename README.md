@@ -4,9 +4,7 @@
 Welcome to UUE! A collection of UI examples for Unity. There's two types of examples, screen space & world space. If you don’t know the difference, click [here](https://docs.unity3d.com/Manual/UICanvas.html) to find out.
 
 ## Examples
-Want to see images? [Click here](#examples-with-image)
-
-Each examples has a readme of it's own. So click an example below to find out more!
+Each example has a readme with images, so click an example below to find out more!
 - [FizzleFade (From Wolfenstein 3D)](/Assets/ScreenSpace/FizzleFade)
 - [Offest (UI Which offset the mouse)](/Assets/ScreenSpace/Offset)
 - [Prision Architect (Building/Managment)](/Assets/ScreenSpace/PrisionArchitect)
