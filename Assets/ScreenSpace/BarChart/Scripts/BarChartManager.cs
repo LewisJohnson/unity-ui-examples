@@ -28,51 +28,24 @@ using System.Globalization;
 using Assets.ScreenSpace.PercentageBased.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 namespace Assets.ScreenSpace.BarChart.Scripts {
 
     [AddComponentMenu("Scripts/Bar Chart/Bar Chart Manager")]
     [RequireComponent(typeof(RectTransform))]
-    //[ExecuteInEditMode]
+
+    // [ExecuteInEditMode]
     public class BarChartManager : MonoBehaviour {
         public GameObject BarChartComponentGameObject;
         public BarChartColourConfig ChartColourConfig;
-        public BarChartColourStyle ChartColourStyle;
 
         [SerializeField] private Slider.Direction barDirection;
-        [SerializeField] private int heightPercentage;
-        [SerializeField] private int leftPaddingPercentage;
-        [SerializeField] private int spacePercentage;
+        [Range(0, 100)] [SerializeField] private int heightPercentage;
+        [Range(0, 100)] [SerializeField] private int leftPaddingPercentage;
+        [Range(0, 100)] [SerializeField] private int spacePercentage;
         [SerializeField] private bool wholeNumbers;
-        [SerializeField] private int widthPercentage;
-
-        public enum BarChartColourStyle {
-            /// <summary>
-            /// The solid.
-            /// </summary>
-            Solid,
-
-            /// <summary>
-            /// The random.
-            /// </summary>
-            Random,
-
-            /// <summary>
-            /// The random soft.
-            /// </summary>
-            RandomSoft,
-
-            /// <summary>
-            /// The random rgb.
-            /// </summary>
-            RandomRGB,
-
-            /// <summary>
-            /// The gradient.
-            /// </summary>
-            Gradient
-        }
+        [Range(0, 100)] [SerializeField] private int widthPercentage;
 
         public Slider.Direction BarDirection {
             get { return barDirection; }
@@ -149,10 +122,6 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
             UpdateVisuals();
         }
 
-        [SuppressMessage(
-            "StyleCop.CSharp.NamingRules",
-            "SA1305:FieldNamesMustNotUseHungarianNotation",
-            Justification = "Reviewed. Suppression is OK here.")]
         public void UpdateVisuals() {
             for (int i = 0; i < transform.childCount; i++) {
                 if (transform.GetChild(i).tag != "Bar") {
@@ -193,37 +162,115 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
                 childScaledComponent.ComponentScale.Width = widthPercentage;
 
                 // Colour
-                switch (ChartColourStyle) {
-                    case BarChartColourStyle.Solid:
-                        childBcc.Colour = ChartColourConfig.SolidColour;
-                        break;
-                    case BarChartColourStyle.Random:
-                        Random rand = new Random();
-                        int r = rand.Next(0, 255);
-                        int g = rand.Next(0, 255);
-                        int b = rand.Next(0, 255);
-                        childBcc.Colour = new Color(r, g, b);
-                        break;
-                    case BarChartColourStyle.RandomSoft:
-                        Random randSoft = new Random();
-                        int rSoft = randSoft.Next(170, 210);
-                        int gSoft = randSoft.Next(170, 210);
-                        int bSoft = randSoft.Next(170, 210);
-                        childBcc.Colour = new Color(rSoft, gSoft, bSoft);
-                        break;
-                    case BarChartColourStyle.RandomRGB:
-                        break;
-                    case BarChartColourStyle.Gradient:
-                        break;
-                }
+                childBcc.Colour = UpdateColour(i);
+            }
+        }
+
+        private Color UpdateColour(int i) {
+            switch (ChartColourConfig.ChartColourStyle) {
+                case BarChartColourConfig.BarChartColourStyle.Solid:
+                    return ChartColourConfig.BaseColour;
+
+                case BarChartColourConfig.BarChartColourStyle.SimilarColour:
+                    Color simColour = ChartColourConfig.BaseColour;
+                    simColour.r = Random.Range(
+                        simColour.r - ChartColourConfig.Similarity,
+                        simColour.r + ChartColourConfig.Similarity);
+                    simColour.g = Random.Range(
+                        simColour.g - ChartColourConfig.Similarity,
+                        simColour.g + ChartColourConfig.Similarity);
+                    simColour.b = Random.Range(
+                        simColour.b - ChartColourConfig.Similarity,
+                        simColour.b + ChartColourConfig.Similarity);
+                    return simColour;
+
+                case BarChartColourConfig.BarChartColourStyle.SimilarShade:
+                    Color simShade = ChartColourConfig.BaseColour;
+                    if (simShade.r > simShade.g && simShade.r > simShade.b) {
+                        simShade.r = Random.Range(
+                            simShade.r - ChartColourConfig.Similarity,
+                            simShade.r + ChartColourConfig.Similarity);
+                    } else if (simShade.g > simShade.r && simShade.g > simShade.b) {
+                        simShade.g = Random.Range(
+                            simShade.g - ChartColourConfig.Similarity,
+                            simShade.g + ChartColourConfig.Similarity);
+                    } else if (simShade.b > simShade.r && simShade.b > simShade.g) {
+                        simShade.b = Random.Range(
+                            simShade.b - ChartColourConfig.Similarity,
+                            simShade.b + ChartColourConfig.Similarity);
+                    }
+
+                    return simShade;
+                case BarChartColourConfig.BarChartColourStyle.Random:
+                    return Random.ColorHSV();
+
+                case BarChartColourConfig.BarChartColourStyle.RandomSoft:
+                    return Random.ColorHSV(0f, 1f, 0f, 1f, 0.4f, 0.8f);
+
+                case BarChartColourConfig.BarChartColourStyle.RandomRGB:
+                    int c = Random.Range(0, 3);
+                    switch (c) {
+                        case 0:
+                            return Color.red;
+                        case 1:
+                            return Color.blue;
+                        case 2:
+                            return Color.green;
+                        default:
+                            Debug.LogException(new ArgumentOutOfRangeException());
+                            return Color.black;
+                    }
+
+                case BarChartColourConfig.BarChartColourStyle.Gradient:
+                    return ChartColourConfig.GardientColour.Evaluate(i / 10f);
+
+                default:
+                    Debug.LogException(new ArgumentOutOfRangeException());
+                    return Color.black;
             }
         }
 
         [Serializable]
         public class BarChartColourConfig {
-            public Color GardientEndColour;
-            public Color GradientStartColour;
-            public Color SolidColour;
+
+            public BarChartColourStyle ChartColourStyle;
+            public Color BaseColour;
+            public Gradient GardientColour;
+            [Range(0f, 1f)] public float Similarity;
+
+            public enum BarChartColourStyle {
+                /// <summary>
+                /// The solid value is the base colour from ChartColourStyle.
+                /// </summary>
+                Solid,
+
+                /// <summary>
+                /// The Similar is colours similar to the base colour.
+                /// </summary>
+                SimilarShade,
+
+                SimilarColour,
+
+                /// <summary>
+                /// The random value is a random colour.
+                /// </summary>
+                Random,
+
+                /// <summary>
+                /// The random soft is random colours within a soft colour looking range.
+                /// </summary>
+                RandomSoft,
+
+                /// <summary>
+                /// The random RGB is either solid Red, Green or Blue .
+                /// </summary>
+                RandomRGB,
+
+                /// <summary>
+                /// The gradient is a gradient between ChartColourStyle start and end colour.
+                /// </summary>
+                Gradient,
+            }
         }
     }
 

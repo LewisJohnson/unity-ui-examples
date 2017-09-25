@@ -69,7 +69,6 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
 
             GetComponent<Slider>().fillRect.GetComponent<Image>().color = colour;
             ValueText.transform.gameObject.SetActive(showValueText);
-            transform.parent.GetComponent<BarChartManager>().UpdateVisuals();
         }
     }
 

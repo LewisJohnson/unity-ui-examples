@@ -118,6 +118,7 @@ namespace Assets.ScreenSpace.FizzleFade.Scripts {
         }
 
         private void SetNextPixel() {
+            // ReSharper disable once UnusedVariable
             int[,] pixels = new int[combinedChunks[chunkLoopIndex, 0].Count, combinedChunks[chunkLoopIndex, 1].Count];
 
             for (int i = 0; i < combinedChunks[chunkLoopIndex, 0].Count; i++) {

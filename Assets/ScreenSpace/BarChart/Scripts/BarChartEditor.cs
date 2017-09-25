@@ -24,7 +24,6 @@ SOFTWARE.
 
 #if UNITY_EDITOR
 
-using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -70,14 +69,21 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
 
             EditorGUILayout.LabelField("Edit", new GUIStyle { fontSize = 12, fontStyle = FontStyle.Bold });
             for (int i = 0; i < bcmScript.transform.childCount; i++) {
-                
+                Transform child = bcmScript.transform.GetChild(i);
+                if (child.tag != "Bar") {
+                    continue;
+                }
+
                 EditorGUILayout.LabelField(string.Format("Bar {0}", i), new GUIStyle { fontSize = 10 });
 
-                Transform child = bcmScript.transform.GetChild(i);
                 Slider childSlider = child.GetComponent<Slider>();
                 BarChartComponent childScript = child.GetComponent<BarChartComponent>();
 
-                childSlider.value = EditorGUILayout.Slider("Value", childSlider.value, childSlider.minValue, childSlider.maxValue);
+                childSlider.value = EditorGUILayout.Slider(
+                    "Value",
+                    childSlider.value,
+                    childSlider.minValue,
+                    childSlider.maxValue);
                 childScript.ShowValueText = EditorGUILayout.Toggle("Show value text", childScript.ShowValueText);
                 childScript.Colour = EditorGUILayout.ColorField("Colour", childScript.Colour);
 
