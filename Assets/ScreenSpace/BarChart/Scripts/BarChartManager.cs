@@ -23,7 +23,6 @@ SOFTWARE.
 */
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Assets.ScreenSpace.PercentageBased.Scripts;
 using UnityEngine;
@@ -41,11 +40,11 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
         public BarChartColourConfig ChartColourConfig;
 
         [SerializeField] private Slider.Direction barDirection;
-        [Range(0, 100)] [SerializeField] private int heightPercentage;
-        [Range(0, 100)] [SerializeField] private int leftPaddingPercentage;
-        [Range(0, 100)] [SerializeField] private int spacePercentage;
+        [Range(0, 100)] [SerializeField] private float heightPercentage;
+        [Range(0, 100)] [SerializeField] private float leftPaddingPercentage;
+        [Range(0, 100)] [SerializeField] private float spacePercentage;
+        [Range(0, 100)] [SerializeField] private float widthPercentage;
         [SerializeField] private bool wholeNumbers;
-        [Range(0, 100)] [SerializeField] private int widthPercentage;
 
         public Slider.Direction BarDirection {
             get { return barDirection; }
@@ -55,7 +54,7 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
             }
         }
 
-        public int HeightPercentage {
+        public float HeightPercentage {
             get { return heightPercentage; }
             set {
                 heightPercentage = value;
@@ -63,7 +62,7 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
             }
         }
 
-        public int LeftPaddingPercentage {
+        public float LeftPaddingPercentage {
             get { return leftPaddingPercentage; }
             set {
                 leftPaddingPercentage = value;
@@ -71,7 +70,7 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
             }
         }
 
-        public int SpacePercentage {
+        public float SpacePercentage {
             get { return spacePercentage; }
             set {
                 spacePercentage = value;
@@ -87,7 +86,7 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
             }
         }
 
-        public int WidthPercentage {
+        public float WidthPercentage {
             get { return widthPercentage; }
             set {
                 widthPercentage = value;
@@ -123,11 +122,12 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
         }
 
         public void UpdateVisuals() {
+            int barChildren = 0;
             for (int i = 0; i < transform.childCount; i++) {
                 if (transform.GetChild(i).tag != "Bar") {
                     continue;
                 }
-
+                
                 if (transform.GetChild(i).GetComponent<Slider>() == null
                     || transform.GetChild(i).GetComponent<ScaledComponent>() == null
                     || transform.GetChild(i).GetComponent<BarChartComponent>() == null) {
@@ -151,10 +151,10 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
                 childBcc.ValueText.text = childSlider.value.ToString(CultureInfo.CurrentCulture);
 
                 // Scaled comp
-                if (i == 0) {
+                if (barChildren == 0) {
                     childScaledComponent.ComponentPosition.Left = leftPaddingPercentage;
                 } else {
-                    childScaledComponent.ComponentPosition.Left = (spacePercentage * i) + leftPaddingPercentage;
+                    childScaledComponent.ComponentPosition.Left = (spacePercentage * barChildren) + leftPaddingPercentage;
                 }
 
                 childScaledComponent.Container = GetComponent<RectTransform>();
@@ -162,11 +162,26 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
                 childScaledComponent.ComponentScale.Width = widthPercentage;
 
                 // Colour
-                childBcc.Colour = UpdateColour(i);
+                childBcc.Colour = UpdateColour(barChildren, transform.childCount - 1);
+                ++barChildren;
             }
         }
 
-        private Color UpdateColour(int i) {
+        public void RandomPopulate(int amount) {
+            for (int i = 0; i < amount; i++) {
+                AddNewBar(0, 100, Random.Range(10, 101), false);
+            }
+        }
+
+        public void Purge() {
+            for (int i = 0; i < transform.childCount; i++) {
+                if (transform.GetChild(i).tag == "Bar") {
+                    DestroyImmediate(transform.GetChild(i).gameObject);
+                }
+            }
+        }
+
+        private Color UpdateColour(int i, int children) {
             switch (ChartColourConfig.ChartColourStyle) {
                 case BarChartColourConfig.BarChartColourStyle.Solid:
                     return ChartColourConfig.BaseColour;
@@ -222,7 +237,7 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
                     }
 
                 case BarChartColourConfig.BarChartColourStyle.Gradient:
-                    return ChartColourConfig.GardientColour.Evaluate(i / 10f);
+                    return ChartColourConfig.GardientColour.Evaluate(i / (float)children);
 
                 default:
                     Debug.LogException(new ArgumentOutOfRangeException());

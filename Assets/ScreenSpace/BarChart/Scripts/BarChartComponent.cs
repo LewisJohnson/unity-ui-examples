@@ -71,5 +71,4 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
             ValueText.transform.gameObject.SetActive(showValueText);
         }
     }
-
 }

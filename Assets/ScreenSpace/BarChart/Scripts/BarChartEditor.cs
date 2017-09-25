@@ -36,7 +36,9 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
         private int max = 100;
         private int min = 0;
         private bool showValue = true;
+        private bool edit = true;
         private int value = 50;
+        private int randomAmount = 99;
 
         public override void OnInspectorGUI() {
             BarChartManager bcmScript = (BarChartManager)target;
@@ -49,6 +51,11 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
 
             if (GUILayout.Button("Update Styles")) {
                 bcmScript.UpdateVisuals();
+            }
+
+            randomAmount = EditorGUILayout.IntField(randomAmount);
+            if (GUILayout.Button("Random")) {
+                bcmScript.RandomPopulate(randomAmount);
             }
 
             EditorGUILayout.Space();
@@ -68,31 +75,39 @@ namespace Assets.ScreenSpace.BarChart.Scripts {
             }
 
             EditorGUILayout.LabelField("Edit", new GUIStyle { fontSize = 12, fontStyle = FontStyle.Bold });
-            for (int i = 0; i < bcmScript.transform.childCount; i++) {
-                Transform child = bcmScript.transform.GetChild(i);
-                if (child.tag != "Bar") {
-                    continue;
+            if (GUILayout.Button("Purge")) {
+                bcmScript.Purge();
+            }
+            edit = EditorGUILayout.Foldout(edit, "Show Children");
+            if (edit) {
+                for (int i = 0; i < bcmScript.transform.childCount; i++) {
+                    Transform child = bcmScript.transform.GetChild(i);
+                    if (child.tag != "Bar") {
+                        continue;
+                    }
+
+                    EditorGUILayout.LabelField(
+                        string.Format("Bar {0}", i),
+                        new GUIStyle { fontSize = 10, fontStyle = FontStyle.Bold });
+
+                    Slider childSlider = child.GetComponent<Slider>();
+                    BarChartComponent childScript = child.GetComponent<BarChartComponent>();
+
+                    childSlider.value = EditorGUILayout.Slider(
+                        "Value",
+                        childSlider.value,
+                        childSlider.minValue,
+                        childSlider.maxValue);
+                    childScript.ShowValueText = EditorGUILayout.Toggle("Show value text", childScript.ShowValueText);
+                    childScript.Colour = EditorGUILayout.ColorField("Colour", childScript.Colour);
+
+                    if (GUILayout.Button("Delete")) {
+                        DestroyImmediate(child.gameObject);
+                    }
+
+                    EditorGUILayout.Separator();
+                    EditorGUILayout.Space();
                 }
-
-                EditorGUILayout.LabelField(string.Format("Bar {0}", i), new GUIStyle { fontSize = 10 });
-
-                Slider childSlider = child.GetComponent<Slider>();
-                BarChartComponent childScript = child.GetComponent<BarChartComponent>();
-
-                childSlider.value = EditorGUILayout.Slider(
-                    "Value",
-                    childSlider.value,
-                    childSlider.minValue,
-                    childSlider.maxValue);
-                childScript.ShowValueText = EditorGUILayout.Toggle("Show value text", childScript.ShowValueText);
-                childScript.Colour = EditorGUILayout.ColorField("Colour", childScript.Colour);
-
-                if (GUILayout.Button("Delete")) {
-                    DestroyImmediate(child.gameObject);
-                }
-
-                EditorGUILayout.Separator();
-                EditorGUILayout.Space();
             }
         }
     }

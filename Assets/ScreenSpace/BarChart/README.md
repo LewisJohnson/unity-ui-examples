@@ -4,13 +4,21 @@
 ### Description
 A bar chart implemented in Unity, with help from the [Percentage Based](https://github.com/LewisJohnson/unity-ui-examples/tree/master/Assets/ScreenSpace/PercentageBased) example.
 
+
+| Custom                  | Solid            | Gradient            | Similar Shade            |
+|-------------------------|------------------|---------------------|--------------------------|
+| ![](./readme-image.jpg) | ![](./solid.png) | ![](./gradient.png) | ![](./similar-shade.png) |
+
+| Similar Colour            | Random            | Random Soft            | Random RGB            |
+|---------------------------|------------------|---------------------|--------------------------|
+| ![](./similar-colour.jpg) | ![](./random-rgb.png) | ![](./random-soft.png) | ![](./random-rgb.png) |
+
 #### Included: 
 * Bar chart
 * Bar chart Editor
-
-#### Todo:
 * Bar chart colour settings
 * Bar chart title setting
+
 
 ### Supported aspect ratios
 * 5:4 ✅
