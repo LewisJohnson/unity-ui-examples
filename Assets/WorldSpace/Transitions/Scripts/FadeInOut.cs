@@ -20,26 +20,43 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-using System.Text;
+
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Common.Scripts {
+namespace Assets.WorldSpace.Transitions.Scripts {
 
-    [AddComponentMenu("Scripts/Common/Vertical Text")]
-    [RequireComponent(typeof(Text))]
+    [AddComponentMenu("Scripts/Transitions/Fade InOut")]
+    [RequireComponent(typeof(Image))]
     [ExecuteInEditMode]
-    public class VerticalText : MonoBehaviour {
+    public class FadeInOut : MonoBehaviour {
 
-        // Use this for initialization
-        private void OnEnable() {
-            string input = GetComponent<Text>().text;
-            StringBuilder sb = new StringBuilder(input.Length * 2);
-            foreach (char chr in input) {
-                sb.Append(chr).Append("\n");
+        public float TransitionTime = 2f;
+        private float timer;
+        public float HangTime = 2f;
+        public bool Fadein;
+
+        public void Update() {
+            if (Fadein) {
+                FadeIn();
+            }
+        }
+        // Update is called once per frame
+        public void FadeIn() {
+            if (timer > TransitionTime) {
+                Fadein = false;
+                StartCoroutine("FadeOut", HangTime);
             }
 
-            GetComponent<Text>().text = sb.ToString();
+            timer += Time.deltaTime;
+            var c = this.GetComponent<Image>().color;
+            c.a = timer;
+            this.GetComponent<Image>().color = c;
+        }
+
+        // Use this for initialization
+        public void FadeOut() {
+            
         }
     }
 
