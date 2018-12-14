@@ -42,6 +42,3 @@ Everyone is welcome to contribute!
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/LewisJohnson/unity-ui-examples/blob/master/LICENSE) for more.
-
-### Notice
-This project has not been abandoned in any way. I will be updating this project throughout 2018. Feel free to contribute.
